@@ -1,0 +1,8 @@
+﻿HOW TO ADD YOUR PHOTO:
+---------------------
+1. Choose any portrait / profile photo of yourself.
+2. Rename your photo file to: profile.jpg
+3. Paste it directly into this "assets" folder:
+   C:\Users\PC\.gemini\antigravity\scratch\deepak-portfolio\assets\profile.jpg
+
+Your portfolio will instantly display your photo in the Hero section with the glowing gradient border and floating badges!
