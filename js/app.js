@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     });
 
+    let sphereResizeTimer;
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       width = rect.width;
@@ -251,11 +252,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const dpr = window.devicePixelRatio || 1;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // Reset and scale properly (no cumulative stacking)
       radius = Math.min(width, height) * 0.35;
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => {
+      clearTimeout(sphereResizeTimer);
+      sphereResizeTimer = setTimeout(resize, 150); // Debounce resize
+    });
 
     const rotateX = (angle) => {
       const cos = Math.cos(angle);
@@ -404,7 +408,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let W = (canvas.width = window.innerWidth);
     let H = (canvas.height = window.innerHeight);
-    window.addEventListener('resize', () => { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
+    let particleResizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(particleResizeTimer);
+      particleResizeTimer = setTimeout(() => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }, 150);
+    });
     const particles = [];
     const count = Math.min(W > 768 ? 45 : 20, 60);
     for (let i = 0; i < count; i++) particles.push({ x: Math.random()*W, y: Math.random()*H, vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4, r: Math.random()*1.5+0.8 });
@@ -467,10 +478,10 @@ document.addEventListener('DOMContentLoaded', () => {
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => {
-        b.classList.remove('bg-blue-600','text-white','border-blue-500');
+        b.classList.remove('bg-red-700','text-white','border-red-600');
         b.classList.add('bg-slate-900/60','text-slate-400','border-slate-800');
       });
-      btn.classList.add('bg-blue-600','text-white','border-blue-500');
+      btn.classList.add('bg-red-700','text-white','border-red-600');
       btn.classList.remove('bg-slate-900/60','text-slate-400','border-slate-800');
       const fv = btn.dataset.filter;
       projectCards.forEach(c => {
@@ -499,6 +510,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'sudo hire deepak': `[PERMISSIONS GRANTED] ✨ Excellent choice!\nDeepak is excited to work with you.\nEmail: <span class="text-cyan-400">deepakselladurai203@gmail.com</span>`
   };
 
+  const escapeHtml = (str) => {
+    const d = document.createElement('div');
+    d.appendChild(document.createTextNode(str));
+    return d.innerHTML;
+  };
+
   const handleCmd = (raw) => {
     const cmd = raw.trim().toLowerCase();
     if (!cmd) return;
@@ -506,14 +523,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prompt = document.createElement('div');
     prompt.className = 'flex items-center gap-2 text-slate-400 text-xs font-mono-code mt-2';
-    prompt.innerHTML = `<span class="text-cyan-400">deepak@portfolio:~$</span> <span class="text-white">${raw}</span>`;
+    prompt.innerHTML = `<span class="text-cyan-400">deepak@portfolio:~$</span> <span class="text-white">${escapeHtml(raw)}</span>`;
     terminalOutput.appendChild(prompt);
 
     const resp = document.createElement('div');
     resp.className = 'text-slate-300 text-xs font-mono-code pl-4 py-1 leading-relaxed border-l-2 border-slate-700/60 my-1';
     resp.innerHTML = termCmds[cmd]
       ? termCmds[cmd]
-      : `<span class="text-red-400">Command not recognized: "${cmd}".</span> Type <span class="text-cyan-400 font-bold">help</span> to see all commands.`;
+      : `<span class="text-red-400">Command not recognized: "${escapeHtml(cmd)}".</span> Type <span class="text-cyan-400 font-bold">help</span> to see all commands.`;
     terminalOutput.appendChild(resp);
     terminalOutput.scrollTop = terminalOutput.scrollHeight;
     playSound('type');
@@ -659,13 +676,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else throw new Error(json.message);
       } catch(err) {
         if (formToast) {
-          formToast.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i><span>Message recorded! Email: deepakselladurai203@gmail.com</span>';
-          formToast.className = 'mb-4 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs flex items-center gap-2';
+          formToast.innerHTML = '<i data-lucide="alert-circle" class="w-4 h-4 text-red-400"></i><span>Failed to send. Please email Deepak directly: deepakselladurai203@gmail.com</span>';
+          formToast.className = 'mb-4 p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs flex items-center gap-2';
           formToast.classList.remove('hidden');
           if (window.lucide) window.lucide.createIcons();
-          setTimeout(() => formToast.classList.add('hidden'), 6000);
+          setTimeout(() => formToast.classList.add('hidden'), 8000);
         }
-        playSound('success');
       } finally {
         if (btn) { btn.disabled = false; btn.innerHTML = orig; if (window.lucide) window.lucide.createIcons(); }
       }
@@ -752,6 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const showTyping = () => {
+    hideTyping(); // Remove any existing indicator first to prevent duplicates
     const div = document.createElement('div');
     div.id = 'typing-indicator';
     div.className = 'chat-msg-ai flex items-center gap-1.5 py-3';
