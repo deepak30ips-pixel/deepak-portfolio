@@ -1,4 +1,4 @@
-﻿// Advanced Interactive Logic for Deepak S Portfolio — Premium Edition
+// Advanced Interactive Logic for Deepak S Portfolio — Premium Edition
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── 1. LUCIDE ICONS ──────────────────────────────────────────
@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     mobileLinks.forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
   }
-
-  
-  });
 
   // ── 4. WEB AUDIO API — CYBERPUNK SFX ─────────────────────────
   let audioCtx = null;
@@ -97,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('a, button, .glass-card-hover').forEach(el => {
     el.addEventListener('mouseenter', () => playSound('hover'));
   });
-  document.querySelectorAll('button[type="submit"], .filter-btn, .theme-swatch').forEach(el => {
+  document.querySelectorAll('button[type="submit"], .filter-btn').forEach(el => {
     el.addEventListener('click', () => playSound('click'));
   });
 
@@ -126,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     typeLoop();
   }
 
-  // ── 6. PARTICLE CANVAS ───────────────────────────────────────
+  // ── 6. PARTICLE CANVAS (RED theme) ───────────────────────────
   const canvas = document.getElementById('particle-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -143,12 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (p.x < 0 || p.x > W) p.vx *= -1;
         if (p.y < 0 || p.y > H) p.vy *= -1;
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-        ctx.fillStyle = 'rgba(59,130,246,0.35)'; ctx.fill();
+        ctx.fillStyle = 'rgba(220,38,38,0.35)'; ctx.fill();
         for (let j = i+1; j < particles.length; j++) {
           const p2 = particles[j], d = Math.hypot(p.x-p2.x, p.y-p2.y);
           if (d < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(59,130,246,${0.15*(1-d/100)})`;
+            ctx.strokeStyle = `rgba(220,38,38,${0.12*(1-d/100)})`;
             ctx.lineWidth = 0.6; ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
           }
         }
@@ -217,13 +214,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const terminalBtns   = document.querySelectorAll('.term-quick-btn');
 
   const termCmds = {
-    'help': `Available commands:\n  <span class="text-cyan-400 font-bold">skills</span>      - Show tech skills\n  <span class="text-cyan-400 font-bold">projects</span>    - List live projects\n  <span class="text-cyan-400 font-bold">about</span>       - Print bio & education\n  <span class="text-cyan-400 font-bold">contact</span>     - Show contact details\n  <span class="text-cyan-400 font-bold">hire</span>        - Hiring info\n  <span class="text-cyan-400 font-bold">github</span>      - GitHub profile details\n  <span class="text-cyan-400 font-bold">clear</span>       - Clear terminal`,
-    'skills': `<span class="text-purple-400 font-bold">Frontend:</span> HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Bootstrap\n<span class="text-cyan-400 font-bold">Programming:</span> Python, C, C++, SQL\n<span class="text-blue-400 font-bold">Backend & DB:</span> SQLite, Firebase, Supabase, Node.js\n<span class="text-emerald-400 font-bold">Dev Tools:</span> Git, GitHub, Streamlit, VS Code, Figma`,
+    'help': `Available commands:\n  <span class="text-cyan-400 font-bold">skills</span>      - Show tech skills\n  <span class="text-cyan-400 font-bold">projects</span>    - List live projects\n  <span class="text-cyan-400 font-bold">about</span>       - Print bio &amp; education\n  <span class="text-cyan-400 font-bold">contact</span>     - Show contact details\n  <span class="text-cyan-400 font-bold">hire</span>        - Hiring info\n  <span class="text-cyan-400 font-bold">github</span>      - GitHub profile details\n  <span class="text-cyan-400 font-bold">clear</span>       - Clear terminal`,
+    'skills': `<span class="text-purple-400 font-bold">Frontend:</span> HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Bootstrap\n<span class="text-cyan-400 font-bold">Programming:</span> Python, C, C++, SQL\n<span class="text-blue-400 font-bold">Backend &amp; DB:</span> SQLite, Firebase, Supabase, Node.js\n<span class="text-emerald-400 font-bold">Dev Tools:</span> Git, GitHub, Streamlit, VS Code, Figma`,
     'projects': `🚀 <span class="text-white font-bold">1. Insurance Fraud Detection System</span>\n   Tech: Python, Scikit-learn, SQLite, Streamlit\n   Live: <a href="https://insurance-fraud-detection-kompany.streamlit.app" target="_blank" class="text-cyan-400 underline">insurance-fraud-detection.streamlit.app</a>\n\n🎮 <span class="text-white font-bold">2. Midnight Grid (Car Game)</span>\n   Tech: HTML5 Canvas, CSS3, Vanilla JavaScript\n   Live: <a href="https://midnight-grid.netlify.app" target="_blank" class="text-purple-400 underline">midnight-grid.netlify.app</a>`,
     'about': `Deepak S | B.Tech Information Technology (2nd Year, Grad 2029)\nCollege: Velammal Engineering College, Tamil Nadu\nFocus: Web Development, Machine Learning, Interactive Web Applications.`,
     'contact': `📧 Email: <a href="mailto:deepakselladurai203@gmail.com" class="text-cyan-400 underline">deepakselladurai203@gmail.com</a>\n📱 Phone: <a href="tel:+919345674398" class="text-blue-400">+91 9345674398</a>\n🔗 LinkedIn: <a href="https://linkedin.com/in/deepak-selladurai-6905b3397" target="_blank" class="text-purple-400 underline">linkedin.com/in/deepak-selladurai</a>\n🐙 GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-emerald-400 underline">github.com/deepak30ips-pixel</a>`,
     'github': `GitHub: <span class="text-emerald-400 font-bold">@deepak30ips-pixel</span>\nRepos: Insurance Fraud Detection, Midnight Grid\nProfile: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-cyan-400 underline">https://github.com/deepak30ips-pixel</a>`,
-    'hire': `🎉 <span class="text-emerald-400 font-bold">Thank you for considering Deepak S!</span>\nStatus: <span class="text-cyan-400">Available for Freelance, Internships & Collaborations</span>\nEmail: <span class="text-blue-400">deepakselladurai203@gmail.com</span>`,
+    'hire': `🎉 <span class="text-emerald-400 font-bold">Thank you for considering Deepak S!</span>\nStatus: <span class="text-cyan-400">Available for Freelance, Internships &amp; Collaborations</span>\nEmail: <span class="text-blue-400">deepakselladurai203@gmail.com</span>`,
     'sudo hire deepak': `[PERMISSIONS GRANTED] ✨ Excellent choice!\nDeepak is excited to work with you.\nEmail: <span class="text-cyan-400">deepakselladurai203@gmail.com</span>`
   };
 
@@ -322,18 +319,18 @@ document.addEventListener('DOMContentLoaded', () => {
     projBody.innerHTML = `
       <div class="space-y-5">
         <div>
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-2">${d.badge}</span>
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-red-500/10 text-red-400 border border-red-500/20 mb-2">${d.badge}</span>
           <h3 class="text-2xl font-bold text-white font-heading">${d.title}</h3>
           <p class="text-slate-400 text-sm mt-2 leading-relaxed">${d.description}</p>
         </div>
-        <div class="flex flex-wrap gap-2">${d.tech.map(t=>`<span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">${t}</span>`).join('')}</div>
+        <div class="flex flex-wrap gap-2">${d.tech.map(t=>`<span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-red-500/10 text-red-400 border border-red-500/20">${t}</span>`).join('')}</div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800"><h4 class="text-sm font-semibold text-slate-200 mb-1 flex items-center gap-2"><span class="text-red-400">●</span> Problem</h4><p class="text-xs text-slate-400 leading-relaxed">${d.problem}</p></div>
           <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800"><h4 class="text-sm font-semibold text-slate-200 mb-1 flex items-center gap-2"><span class="text-emerald-400">●</span> Solution</h4><p class="text-xs text-slate-400 leading-relaxed">${d.solution}</p></div>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80"><h4 class="text-sm font-semibold text-slate-200 mb-2">Key Highlights</h4><ul class="text-xs text-slate-300 space-y-1.5">${d.keyFeatures.map(f=>`<li class="flex items-start gap-2"><span class="text-blue-400">✓</span><span>${f}</span></li>`).join('')}</ul></div>
+        <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80"><h4 class="text-sm font-semibold text-slate-200 mb-2">Key Highlights</h4><ul class="text-xs text-slate-300 space-y-1.5">${d.keyFeatures.map(f=>`<li class="flex items-start gap-2"><span class="text-red-400">✓</span><span>${f}</span></li>`).join('')}</ul></div>
         <div class="flex items-center gap-3 pt-3 border-t border-slate-800">
-          ${d.liveUrl ? `<a href="${d.liveUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium text-sm transition flex items-center gap-2"><span>Live Demo</span><i data-lucide="external-link" class="w-4 h-4"></i></a>` : ''}
+          ${d.liveUrl ? `<a href="${d.liveUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-medium text-sm transition flex items-center gap-2"><span>Live Demo</span><i data-lucide="external-link" class="w-4 h-4"></i></a>` : ''}
           ${d.githubUrl ? `<a href="${d.githubUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition flex items-center gap-2"><span>Source Code</span><i data-lucide="github" class="w-4 h-4"></i></a>` : ''}
           <button onclick="closeProjectModal()" class="ml-auto px-4 py-2 rounded-xl text-slate-400 hover:text-white text-sm">Close</button>
         </div>
@@ -507,5 +504,4 @@ document.addEventListener('DOMContentLoaded', () => {
   chatSend?.addEventListener('click', sendChat);
   chatInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChat(); });
 
-});
-
+}); // END DOMContentLoaded
