@@ -434,3 +434,203 @@ body::after {
   border-radius: 2px;
 }
 
+
+/* ═══════════════════════════════════════════════════════════════════
+   CINEMATIC PRELOADER SCREEN
+   ═══════════════════════════════════════════════════════════════════ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+#preloader.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Deep black background */
+.preloader-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(180, 0, 0, 0.18) 0%, transparent 65%),
+    linear-gradient(145deg, #0a0a0a 0%, #080808 50%, #0d0404 100%);
+}
+
+/* Animated scanlines overlay */
+.preloader-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.18) 2px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  animation: scanMove 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes scanMove {
+  0%   { background-position-y: 0; }
+  100% { background-position-y: 80px; }
+}
+
+/* Main centered content */
+.preloader-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* ── Logo Ring Container ── */
+.preloader-logo-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.preloader-logo-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+.preloader-ring-outer {
+  width: 120px;
+  height: 120px;
+  border-top-color: #dc2626;
+  border-right-color: rgba(220, 38, 38, 0.3);
+  border-bottom-color: transparent;
+  border-left-color: rgba(220, 38, 38, 0.3);
+  animation: spinCW 1.8s linear infinite;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.35);
+}
+.preloader-ring-inner {
+  width: 86px;
+  height: 86px;
+  border-top-color: transparent;
+  border-right-color: #9ca3af;
+  border-bottom-color: rgba(156, 163, 175, 0.25);
+  border-left-color: transparent;
+  animation: spinCCW 1.3s linear infinite;
+}
+@keyframes spinCW  { to { transform: rotate(360deg); } }
+@keyframes spinCCW { to { transform: rotate(-360deg); } }
+
+/* ── DS Logo Text ── */
+.preloader-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  animation: logoGlow 2s ease-in-out infinite alternate;
+}
+.preloader-logo-d { color: #dc2626; }
+.preloader-logo-s { color: #9ca3af; }
+
+@keyframes logoGlow {
+  from { text-shadow: 0 0 12px rgba(220, 38, 38, 0.6), 0 0 24px rgba(220, 38, 38, 0.25); }
+  to   { text-shadow: 0 0 22px rgba(220, 38, 38, 0.9), 0 0 45px rgba(220, 38, 38, 0.4), 0 0 65px rgba(220, 38, 38, 0.15); }
+}
+
+/* ── Name ── */
+.preloader-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #f1f5f9;
+  text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+/* ── Sub-title ── */
+.preloader-title {
+  font-family: 'Fira Code', monospace;
+  font-size: clamp(0.7rem, 2vw, 0.9rem);
+  color: #9ca3af;
+  letter-spacing: 0.08em;
+  animation: fadeUp 0.6s ease 0.4s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Progress Bar ── */
+.preloader-bar-wrap {
+  width: min(380px, 80vw);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeUp 0.6s ease 0.5s both;
+}
+.preloader-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid rgba(220,38,38,0.12);
+}
+.preloader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #7f1d1d, #dc2626, #ef4444);
+  border-radius: 99px;
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.8), 0 0 4px #fff2;
+  transition: width 0.1s linear;
+}
+.preloader-pct {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.75rem;
+  color: #dc2626;
+  text-align: right;
+  letter-spacing: 0.05em;
+}
+
+/* ── Status Lines ── */
+.preloader-status {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: fadeUp 0.6s ease 0.7s both;
+}
+.preloader-status-line {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.7rem;
+  color: rgba(156, 163, 175, 0.45);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.4s ease, color 0.4s ease;
+}
+.preloader-status-line.active {
+  opacity: 1;
+  color: rgba(156, 163, 175, 0.85);
+}
+.preloader-status-line.done {
+  opacity: 1;
+  color: rgba(156, 163, 175, 0.4);
+}
+
+/* ─── Prevent body scroll while preloader active ─── */
+body.preloader-active {
+  overflow: hidden;
+}

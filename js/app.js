@@ -1,6 +1,66 @@
 // Advanced Interactive Logic for Deepak S Portfolio — Premium Edition
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ── 0. CINEMATIC PRELOADER ────────────────────────────────────────
+  (() => {
+    const preloader   = document.getElementById('preloader');
+    const bar         = document.getElementById('preloader-bar');
+    const pct         = document.getElementById('preloader-pct');
+    const statusLines = [
+      document.getElementById('pst-1'),
+      document.getElementById('pst-2'),
+      document.getElementById('pst-3'),
+      document.getElementById('pst-4'),
+    ];
+    if (!preloader || !bar) return;
+
+    document.body.classList.add('preloader-active');
+
+    let progress = 0;
+    const milestones = [
+      { at: 10,  lineIdx: 0 },
+      { at: 40,  lineIdx: 1 },
+      { at: 75,  lineIdx: 2 },
+      { at: 100, lineIdx: 3 },
+    ];
+
+    const tick = setInterval(() => {
+      // Accelerate toward milestones, then slow slightly near 100
+      const step = progress < 80 ? (Math.random() * 3 + 1.5) : (Math.random() * 1.2 + 0.4);
+      progress = Math.min(100, progress + step);
+
+      if (bar) bar.style.width = progress + '%';
+      if (pct)  pct.textContent  = Math.floor(progress) + '%';
+
+      // Activate status lines at thresholds
+      milestones.forEach(m => {
+        const line = statusLines[m.lineIdx];
+        if (!line) return;
+        if (progress >= m.at && !line.classList.contains('active') && !line.classList.contains('done')) {
+          // Mark previous lines as done
+          statusLines.slice(0, m.lineIdx).forEach(l => {
+            if (l) { l.classList.remove('active'); l.classList.add('done'); }
+          });
+          line.classList.add('active');
+        }
+      });
+
+      if (progress >= 100) {
+        clearInterval(tick);
+        // Mark all done
+        statusLines.forEach(l => { if (l) { l.classList.remove('active'); l.classList.add('done'); } });
+
+        // Short pause then fade out preloader
+        setTimeout(() => {
+          preloader.classList.add('preloader-hidden');
+          document.body.classList.remove('preloader-active');
+          // Remove from DOM after transition
+          setTimeout(() => { preloader.remove(); }, 800);
+        }, 350);
+      }
+    }, 35);
+  })();
+
   // ── 1. LUCIDE ICONS ──────────────────────────────────────────
   if (window.lucide) window.lucide.createIcons();
 

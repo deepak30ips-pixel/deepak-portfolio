@@ -81,6 +81,41 @@
 </head>
 <body class="bg-[#080808] text-slate-100 min-h-screen relative selection:bg-blue-500 selection:text-white bg-grid-pattern theme-cyan">
 
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- CINEMATIC PRELOADER SCREEN                                      -->
+  <!-- ═══════════════════════════════════════════════════════════════ -->
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-bg"></div>
+    <div class="preloader-scanlines"></div>
+    <div class="preloader-content">
+      <!-- Glowing DS Logo -->
+      <div class="preloader-logo-wrap">
+        <div class="preloader-logo-ring preloader-ring-outer"></div>
+        <div class="preloader-logo-ring preloader-ring-inner"></div>
+        <div class="preloader-logo">
+          <span class="preloader-logo-d">D</span><span class="preloader-logo-s">S</span>
+        </div>
+      </div>
+      <!-- Name & Title -->
+      <div class="preloader-name">DEEPAK S</div>
+      <div class="preloader-title">// Initializing Developer Protocol...</div>
+      <!-- Progress bar -->
+      <div class="preloader-bar-wrap">
+        <div class="preloader-bar-track">
+          <div id="preloader-bar" class="preloader-bar-fill"></div>
+        </div>
+        <div id="preloader-pct" class="preloader-pct">0%</div>
+      </div>
+      <!-- Status lines -->
+      <div class="preloader-status">
+        <div class="preloader-status-line" id="pst-1">[ Loading modules... ]</div>
+        <div class="preloader-status-line" id="pst-2">[ Initializing particles... ]</div>
+        <div class="preloader-status-line" id="pst-3">[ Rendering components... ]</div>
+        <div class="preloader-status-line" id="pst-4">[ <span class="text-red-400">READY</span> ]</div>
+      </div>
+    </div>
+  </div>
+
   <!-- Interactive Background Canvas Particles -->
   <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
