@@ -549,6 +549,28 @@
             <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800/80 text-slate-200 border border-slate-700/80 hover:border-pink-400 transition">Video Editing</span>
           </div>
         </div>
+      <!-- INTERACTIVE 3D TECH STACK SPHERE -->
+      <div id="tech-sphere-container" class="glass-panel spotlight-card rounded-3xl p-6 sm:p-8 space-y-4 relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-red-500/10 text-red-400 flex items-center justify-center border border-red-500/20">
+              <i data-lucide="globe-2" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white font-heading">Interactive 3D Tech Cloud</h3>
+              <p class="text-xs text-slate-400">Click & drag to rotate Deepak's tech stack in 3D space</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-mono text-red-400 bg-red-950/40 border border-red-900/50 px-3 py-1.5 rounded-full w-fit">
+            <i data-lucide="move" class="w-3.5 h-3.5 animate-pulse"></i>
+            <span>DRAG / SPIN SPHERE</span>
+          </div>
+        </div>
+
+        <!-- 3D Canvas Container -->
+        <div class="w-full h-[320px] sm:h-[380px] flex items-center justify-center relative cursor-grab active:cursor-grabbing">
+          <canvas id="tech-sphere-canvas" class="w-full h-full max-w-[500px] max-h-[380px]"></canvas>
+        </div>
       </div>
 
       <!-- ANIMATED SKILL PROFICIENCY BARS -->

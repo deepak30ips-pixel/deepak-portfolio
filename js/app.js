@@ -181,6 +181,176 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       animateBars();
     }
+  // ── 4.8. INTERACTIVE 3D TECH SPHERE ───────────────────────────
+  (() => {
+    const canvas = document.getElementById('tech-sphere-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const techList = [
+      { name: 'HTML5', color: '#ef4444' },
+      { name: 'CSS3', color: '#f87171' },
+      { name: 'JavaScript', color: '#fca5a5' },
+      { name: 'Python', color: '#ef4444' },
+      { name: 'C++', color: '#dc2626' },
+      { name: 'Tailwind', color: '#f87171' },
+      { name: 'Git', color: '#9ca3af' },
+      { name: 'GitHub', color: '#e5e7eb' },
+      { name: 'React.js', color: '#ef4444' },
+      { name: 'SQLite', color: '#cbd5e1' },
+      { name: 'Streamlit', color: '#fca5a5' },
+      { name: 'Firebase', color: '#dc2626' },
+      { name: 'VS Code', color: '#9ca3af' },
+      { name: 'Figma', color: '#f87171' },
+      { name: 'C Language', color: '#9ca3af' },
+      { name: 'SQL', color: '#cbd5e1' },
+      { name: 'Node.js', color: '#ef4444' },
+      { name: 'Canvas API', color: '#dc2626' }
+    ];
+
+    let width = 0, height = 0, radius = 130;
+    let dtr = Math.PI / 180;
+    let rx = 0.003, ry = 0.005; // Auto rotation speeds
+    let mouseX = 0, mouseY = 0;
+    let isDragging = false, lastX = 0, lastY = 0;
+
+    // Distribute tags evenly on a 3D sphere using Fibonacci algorithm
+    const tags = techList.map((tech, i) => {
+      const phi = Math.acos(-1 + (2 * i + 1) / techList.length);
+      const theta = Math.sqrt(techList.length * Math.PI) * phi;
+      return {
+        name: tech.name,
+        color: tech.color,
+        x: radius * Math.cos(theta) * Math.sin(phi),
+        y: radius * Math.sin(theta) * Math.sin(phi),
+        z: radius * Math.cos(phi),
+        x2d: 0,
+        y2d: 0,
+        scale: 1,
+        alpha: 1
+      };
+    });
+
+    const resize = () => {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      radius = Math.min(width, height) * 0.35;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const rotateX = (angle) => {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      tags.forEach(t => {
+        const y1 = t.y * cos - t.z * sin;
+        const z1 = t.z * cos + t.y * sin;
+        t.y = y1;
+        t.z = z1;
+      });
+    };
+
+    const rotateY = (angle) => {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      tags.forEach(t => {
+        const x1 = t.x * cos - t.z * sin;
+        const z1 = t.z * cos + t.x * sin;
+        t.x = x1;
+        t.z = z1;
+      });
+    };
+
+    // Drag handlers for mouse & touch
+    const startDrag = (x, y) => {
+      isDragging = true;
+      lastX = x;
+      lastY = y;
+    };
+
+    const moveDrag = (x, y) => {
+      if (!isDragging) return;
+      const dx = x - lastX;
+      const dy = y - lastY;
+      ry = dx * 0.003;
+      rx = -dy * 0.003;
+      lastX = x;
+      lastY = y;
+    };
+
+    const stopDrag = () => {
+      isDragging = false;
+    };
+
+    const parent = canvas.parentElement;
+    if (parent) {
+      parent.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+      window.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+      window.addEventListener('mouseup', stopDrag);
+
+      parent.addEventListener('touchstart', (e) => {
+        if (e.touches[0]) startDrag(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches[0]) moveDrag(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      window.addEventListener('touchend', stopDrag);
+    }
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Inertia decay if not dragging
+      if (!isDragging) {
+        rx *= 0.96;
+        ry *= 0.96;
+        if (Math.abs(rx) < 0.001) rx = 0.0015;
+        if (Math.abs(ry) < 0.001) ry = 0.0025;
+      }
+
+      rotateX(rx);
+      rotateY(ry);
+
+      // Sort tags by Z (back to front depth buffering)
+      tags.sort((a, b) => a.z - b.z);
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const fov = 300;
+
+      tags.forEach(t => {
+        const scale = fov / (fov + t.z);
+        t.x2d = cx + t.x * scale;
+        t.y2d = cy + t.y * scale;
+        t.scale = scale;
+        t.alpha = (t.z + radius) / (2 * radius); // 0.1 to 1.0
+
+        ctx.save();
+        ctx.font = `bold ${Math.max(10, Math.floor(13 * scale))}px 'Space Grotesk', sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.globalAlpha = Math.max(0.18, Math.min(1, t.alpha));
+
+        if (t.z > 0) {
+          ctx.shadowColor = 'rgba(220, 38, 38, 0.8)';
+          ctx.shadowBlur = 10 * scale;
+        }
+
+        ctx.fillStyle = t.z > 20 ? '#ffffff' : t.color;
+        ctx.fillText(t.name, t.x2d, t.y2d);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(render);
+    };
+
+    render();
   })();
 
   // Add hover sounds to interactive elements
