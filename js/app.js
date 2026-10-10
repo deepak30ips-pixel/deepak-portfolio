@@ -47,18 +47,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (progress >= 100) {
         clearInterval(tick);
-        // Mark all done
         statusLines.forEach(l => { if (l) { l.classList.remove('active'); l.classList.add('done'); } });
 
-        // Short pause then fade out preloader
         setTimeout(() => {
-          preloader.classList.add('preloader-hidden');
-          document.body.classList.remove('preloader-active');
-          // Remove from DOM after transition
-          setTimeout(() => { preloader.remove(); }, 800);
+          if (preloader && !preloader.classList.contains('preloader-hidden')) {
+            preloader.classList.add('preloader-hidden');
+            document.body.classList.remove('preloader-active');
+            setTimeout(() => { preloader.remove(); }, 800);
+          }
         }, 350);
       }
     }, 35);
+
+    // Guaranteed Safety Fallback — Dismiss preloader after 2.5s maximum
+    setTimeout(() => {
+      clearInterval(tick);
+      if (preloader && !preloader.classList.contains('preloader-hidden')) {
+        preloader.classList.add('preloader-hidden');
+        document.body.classList.remove('preloader-active');
+        setTimeout(() => { preloader.remove(); }, 800);
+      }
+    }, 2500);
   })();
 
   // ── 1. LUCIDE ICONS ──────────────────────────────────────────
@@ -89,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const getAudioCtx = () => {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {});
     return audioCtx;
   };
 
@@ -181,6 +191,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       animateBars();
     }
+  })();
+
   // ── 4.8. INTERACTIVE 3D TECH SPHERE ───────────────────────────
   (() => {
     const canvas = document.getElementById('tech-sphere-canvas');

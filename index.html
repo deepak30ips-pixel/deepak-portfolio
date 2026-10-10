@@ -254,6 +254,7 @@
                 <img id="user-profile-img" 
                      src="assets/profile.jpg" 
                      alt="Deepak S" 
+                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Deepak+S&background=dc2626&color=ffffff&size=256';"
                      class="absolute inset-0 w-full h-full object-cover object-[center_25%] transition duration-700 group-hover:scale-105" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#060911]/80 via-transparent to-transparent pointer-events-none"></div>
               </div>
@@ -920,8 +921,14 @@
               alt="Deepak S GitHub Stats" 
               class="w-full max-w-md h-auto rounded-xl"
               loading="lazy"
-              onerror="this.onerror=null; this.src='https://github-readme-stats.vercel.app/api?username=deepak30ips-pixel&show_icons=true&theme=dark&bg_color=0f0f0f&title_color=dc2626&text_color=9ca3af&icon_color=ef4444&border_color=7f1d1d';"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
             />
+            <div class="hidden text-center py-6 space-y-2">
+              <i data-lucide="github" class="w-8 h-8 text-red-500 mx-auto"></i>
+              <h4 class="text-sm font-bold text-white">@deepak30ips-pixel on GitHub</h4>
+              <p class="text-xs text-slate-400">Visit profile for live repository statistics & commits</p>
+              <a href="https://github.com/deepak30ips-pixel" target="_blank" class="inline-block mt-2 px-3 py-1.5 rounded-lg bg-red-900/60 text-red-300 text-xs font-semibold border border-red-800">View GitHub →</a>
+            </div>
           </div>
 
           <!-- Live Top Languages Card -->
@@ -931,8 +938,14 @@
               alt="Deepak S Top Languages" 
               class="w-full max-w-md h-auto rounded-xl"
               loading="lazy"
-              onerror="this.onerror=null; this.src='https://github-readme-stats.vercel.app/api/top-langs/?username=deepak30ips-pixel&layout=compact&theme=dark&bg_color=0f0f0f&title_color=dc2626&text_color=9ca3af&icon_color=ef4444&border_color=7f1d1d';"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
             />
+            <div class="hidden text-center py-6 space-y-2">
+              <i data-lucide="code" class="w-8 h-8 text-red-500 mx-auto"></i>
+              <h4 class="text-sm font-bold text-white">Top Languages</h4>
+              <p class="text-xs text-slate-400">Python • JavaScript • C++ • SQL • HTML5/CSS3</p>
+              <a href="https://github.com/deepak30ips-pixel" target="_blank" class="inline-block mt-2 px-3 py-1.5 rounded-lg bg-red-900/60 text-red-300 text-xs font-semibold border border-red-800">View Repos →</a>
+            </div>
           </div>
         </div>
       </div>
