@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
@@ -52,7 +52,7 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-[#060911] text-slate-100 min-h-screen relative selection:bg-blue-500 selection:text-white bg-grid-pattern">
+<body class="bg-[#060911] text-slate-100 min-h-screen relative selection:bg-blue-500 selection:text-white bg-grid-pattern theme-cyan">
 
   <!-- Interactive Background Canvas Particles -->
   <canvas id="particle-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
@@ -61,6 +61,15 @@
   <div class="glow-orb-1 top-[-100px] left-1/2 -translate-x-1/2"></div>
   <div class="glow-orb-2 top-[600px] right-[-100px]"></div>
   <div class="glow-orb-1 top-[2000px] left-[-150px]"></div>
+
+  <!-- THEME CUSTOMIZER PANEL (right side) -->
+  <div class="theme-panel" aria-label="Theme Customizer">
+    <div class="text-[9px] text-slate-500 text-center mb-1 leading-tight">THEME</div>
+    <button class="theme-swatch active" data-theme="theme-cyan" style="background: linear-gradient(135deg,#06b6d4,#3b82f6)" title="Cyan" aria-label="Cyan Theme"></button>
+    <button class="theme-swatch" data-theme="theme-purple" style="background: linear-gradient(135deg,#c084fc,#e879f9)" title="Purple" aria-label="Purple Theme"></button>
+    <button class="theme-swatch" data-theme="theme-emerald" style="background: linear-gradient(135deg,#34d399,#10b981)" title="Emerald" aria-label="Emerald Theme"></button>
+    <button class="theme-swatch" data-theme="theme-amber" style="background: linear-gradient(135deg,#fbbf24,#f97316)" title="Amber" aria-label="Amber Theme"></button>
+  </div>
 
   <!-- Header & Sticky Glass Navbar -->
   <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-4">
@@ -83,8 +92,17 @@
         <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
       </div>
 
-      <!-- Action Button -->
+      <!-- Action Buttons + Audio Control -->
       <div class="hidden md:flex items-center gap-3">
+        <!-- Audio Mute Toggle -->
+        <button id="mute-btn" aria-label="Toggle Sound" class="audio-btn p-2 rounded-xl bg-slate-800/60 border border-slate-700/60 hover:border-cyan-500/40 text-slate-400 hover:text-cyan-400 flex items-center gap-1.5">
+          <i id="mute-icon" data-lucide="volume-2" class="w-4 h-4"></i>
+          <div id="audio-visualizer" class="audio-visualizer">
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+          </div>
+        </button>
         <a href="#contact" class="px-5 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-lg shadow-blue-500/25 transition transform hover:scale-105 flex items-center gap-1.5">
           <span>Let's Talk</span>
           <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
@@ -235,8 +253,8 @@
       </div>
     </section>
 
-﻿    <!-- ABOUT ME SECTION -->
-    <section id="about" class="space-y-8">
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="space-y-8 reveal">
       <div class="text-center space-y-2">
         <span class="text-xs font-bold text-cyan-400 tracking-widest uppercase">Get to know me</span>
         <h2 class="text-3xl font-bold text-white font-heading">About Me</h2>
@@ -296,7 +314,7 @@
     </section>
 
     <!-- SKILLS SECTION -->
-    <section id="skills" class="space-y-8">
+    <section id="skills" class="space-y-8 reveal">
       <div class="text-center space-y-2">
         <span class="text-xs font-bold text-cyan-400 tracking-widest uppercase">My Arsenal</span>
         <h2 class="text-3xl font-bold text-white font-heading">Technical Skills</h2>
@@ -399,7 +417,7 @@
     </section>
 
     <!-- INTERACTIVE DEVELOPER CLI TERMINAL -->
-    <section id="terminal" class="space-y-6">
+    <section id="terminal" class="space-y-6 reveal">
       <div class="text-center space-y-2">
         <span class="text-xs font-bold text-cyan-400 tracking-widest uppercase">Developer Experience</span>
         <h2 class="text-3xl font-bold text-white font-heading">Interactive CLI Terminal</h2>
@@ -441,7 +459,7 @@
     </section>
 
     <!-- FEATURED PROJECTS SECTION -->
-    <section id="projects" class="space-y-8">
+    <section id="projects" class="space-y-8 reveal">
       <div class="text-center space-y-2">
         <span class="text-xs font-bold text-cyan-400 tracking-widest uppercase">Proof of Work</span>
         <h2 class="text-3xl font-bold text-white font-heading">Featured Projects</h2>
@@ -458,7 +476,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Project 1: Insurance Fraud Detection -->
-        <div data-category="ml web" class="project-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden">
+        <div data-category="ml web" class="project-card tilt-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <span class="px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">Machine Learning & Data</span>
@@ -500,7 +518,7 @@
         </div>
 
         <!-- Project 2: Midnight Grid -->
-        <div data-category="game web" class="project-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden">
+        <div data-category="game web" class="project-card tilt-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20">Browser Game</span>
@@ -908,6 +926,49 @@
   <a id="back-to-top" href="#home" class="fixed bottom-6 right-6 p-3 rounded-full glass-panel border border-cyan-500/30 text-cyan-400 shadow-xl opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 z-40">
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </a>
+
+  <!-- AI CHAT FLOATING BUTTON -->
+  <button id="ai-chat-btn" aria-label="Ask Deepak AI" class="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-3 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-xs font-semibold shadow-2xl shadow-blue-500/30 transition-all duration-200 hover:scale-105 hover:-translate-y-0.5">
+    <i data-lucide="bot" class="w-4 h-4"></i>
+    <span>Ask Deepak AI</span>
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+  </button>
+
+  <!-- AI CHAT DRAWER / WINDOW -->
+  <div id="ai-chat-window" class="ai-chat-window closed fixed bottom-24 left-6 z-50 w-80 max-w-[calc(100vw-3rem)] rounded-2xl overflow-hidden transition-all duration-300" style="background: rgba(10,16,32,0.95); backdrop-filter: blur(20px);">
+    <!-- Chat Header -->
+    <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800" style="background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(109,40,217,0.3));">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white">
+          <i data-lucide="bot" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <p class="text-xs font-bold text-white">Ask Deepak AI</p>
+          <p class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span> Online</p>
+        </div>
+      </div>
+      <button onclick="document.getElementById('ai-chat-window').classList.remove('open'); document.getElementById('ai-chat-window').classList.add('closed');" class="text-slate-400 hover:text-white p-1">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+    <!-- Chat Messages -->
+    <div id="ai-chat-body" class="flex flex-col gap-2.5 p-4 overflow-y-auto" style="max-height: 300px; min-height: 200px;">
+      <div class="chat-msg-ai">👋 Hey! I'm Deepak's AI assistant. Ask me about his skills, projects, availability, or how to contact him!</div>
+    </div>
+    <!-- Suggested Prompts -->
+    <div class="px-3 pb-2 flex flex-wrap gap-1.5">
+      <button class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800/80 text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition" onclick="document.getElementById('ai-chat-input').value='What are his skills?'; document.getElementById('ai-chat-send').click()">Skills?</button>
+      <button class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800/80 text-purple-300 border border-slate-700 hover:border-purple-500/50 transition" onclick="document.getElementById('ai-chat-input').value='Tell me about his projects'; document.getElementById('ai-chat-send').click()">Projects?</button>
+      <button class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800/80 text-emerald-300 border border-slate-700 hover:border-emerald-500/50 transition" onclick="document.getElementById('ai-chat-input').value='Is he available to hire?'; document.getElementById('ai-chat-send').click()">Hire?</button>
+    </div>
+    <!-- Chat Input -->
+    <div class="flex items-center gap-2 px-3 pb-3">
+      <input id="ai-chat-input" type="text" placeholder="Ask anything about Deepak..." class="flex-1 px-3 py-2 rounded-xl text-xs bg-slate-800/80 border border-slate-700 focus:border-blue-500/60 focus:outline-none text-white placeholder-slate-500 transition">
+      <button id="ai-chat-send" class="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 transition">
+        <i data-lucide="send" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+  </div>
 
   <!-- PROJECT CASE-STUDY MODAL -->
   <div id="project-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
