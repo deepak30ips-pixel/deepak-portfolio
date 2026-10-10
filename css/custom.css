@@ -1,4 +1,4 @@
-﻿/* Custom Styles & Keyframe Animations for Deepak S Portfolio — Red Grunge Edition */
+/* Custom Styles & Keyframe Animations for Deepak S Portfolio — Red Grunge Edition */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap');
 
 :root {
@@ -316,15 +316,19 @@ h1, h2, h3, h4, .font-heading {
   transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===== SCROLL REVEAL ===== */
+/* ===== SCROLL REVEAL — always visible, animate in ===== */
 .reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  opacity: 1;
+  transform: translateY(0);
+  animation: sectionFadeIn 0.75s ease both;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== CYBERPUNK GLITCH TEXT (hero) ===== */
