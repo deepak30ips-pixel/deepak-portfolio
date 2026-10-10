@@ -1,4 +1,4 @@
-/* Custom Styles & Keyframe Animations for Deepak S Portfolio — Red Grunge Edition */
+﻿/* Custom Styles & Keyframe Animations for Deepak S Portfolio — Red Grunge Edition */
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap');
 
 :root {
@@ -269,37 +269,7 @@ h1, h2, h3, h4, .font-heading {
   40% { transform: scale(1); }
 }
 
-/* ===== THEME CUSTOMIZER PANEL ===== */
-.theme-panel {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 45;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 10px 6px;
-  background: rgba(10, 10, 10, 0.82);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(220, 38, 38, 0.18);
-  border-right: none;
-  border-radius: 14px 0 0 14px;
-}
-.theme-swatch {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid transparent;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-.theme-swatch:hover { transform: scale(1.2); }
-.theme-swatch.active {
-  border-color: rgba(255,255,255,0.7);
-  box-shadow: 0 0 10px 2px currentColor;
-  transform: scale(1.15);
-}
+
 
 /* ===== AUDIO CONTROL ===== */
 .audio-btn {
@@ -459,3 +429,4 @@ body::after {
   margin: 4px 0;
   border-radius: 2px;
 }
+

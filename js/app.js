@@ -1,4 +1,4 @@
-// Advanced Interactive Logic for Deepak S Portfolio — Premium Edition
+﻿// Advanced Interactive Logic for Deepak S Portfolio — Premium Edition
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── 1. LUCIDE ICONS ──────────────────────────────────────────
@@ -13,26 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileLinks.forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
   }
 
-  // ── 3. THEME CUSTOMIZER ───────────────────────────────────────
-  const themes = ['theme-cyan', 'theme-purple', 'theme-emerald', 'theme-amber'];
-  const savedTheme = localStorage.getItem('deepak-theme') || 'theme-cyan';
-  document.body.classList.add(savedTheme);
-
-  const swatches = document.querySelectorAll('.theme-swatch');
-  const markActive = (name) => {
-    swatches.forEach(s => s.classList.toggle('active', s.dataset.theme === name));
-  };
-  markActive(savedTheme);
-
-  swatches.forEach(swatch => {
-    swatch.addEventListener('click', () => {
-      const t = swatch.dataset.theme;
-      themes.forEach(th => document.body.classList.remove(th));
-      document.body.classList.add(t);
-      localStorage.setItem('deepak-theme', t);
-      markActive(t);
-      playSound('click');
-    });
+  
   });
 
   // ── 4. WEB AUDIO API — CYBERPUNK SFX ─────────────────────────
@@ -527,3 +508,4 @@ document.addEventListener('DOMContentLoaded', () => {
   chatInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChat(); });
 
 });
+
