@@ -598,3 +598,41 @@ document.addEventListener('DOMContentLoaded', () => {
   chatInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChat(); });
 
 }); // END DOMContentLoaded
+
+// ── GLOBAL LIVE PREVIEW MODAL FUNCTIONS ──────────────────────────
+window.openLivePreviewModal = (url, title) => {
+  const modal = document.getElementById('live-preview-modal');
+  const iframe = document.getElementById('preview-iframe');
+  const titleEl = document.getElementById('preview-modal-title');
+  const urlEl = document.getElementById('preview-modal-url');
+  const extLink = document.getElementById('preview-external-link');
+  const loading = document.getElementById('preview-loading');
+
+  if (!modal || !iframe) return;
+
+  if (loading) loading.style.display = 'flex';
+  if (titleEl) titleEl.textContent = title || 'Live Project Preview';
+  if (urlEl) urlEl.textContent = url;
+  if (extLink) extLink.href = url;
+
+  iframe.src = url;
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+
+  if (window.playSound) window.playSound('click');
+};
+
+window.closeLivePreviewModal = () => {
+  const modal = document.getElementById('live-preview-modal');
+  const iframe = document.getElementById('preview-iframe');
+
+  if (!modal) return;
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  if (iframe) iframe.src = '';
+  document.body.style.overflow = '';
+
+  if (window.playSound) window.playSound('click');
+};
+

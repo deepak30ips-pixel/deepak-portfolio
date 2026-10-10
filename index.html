@@ -736,14 +736,19 @@
             </ul>
           </div>
 
-          <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-3">
-            <a href="https://insurance-fraud-detection-kompany.streamlit.app" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
-              <span>View Live Demo</span>
+          <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2 sm:gap-3">
+            <a href="https://insurance-fraud-detection-kompany.streamlit.app" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
+              <span>View Live</span>
               <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
             </a>
 
-            <a href="https://github.com/deepak30ips-pixel/insurance-fraud-detection" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5">
-              <span>Source Code</span>
+            <button onclick="openLivePreviewModal('https://insurance-fraud-detection-kompany.streamlit.app', 'Insurance Fraud Detection System')" class="px-3.5 py-2.5 rounded-xl bg-red-950/70 hover:bg-red-900/90 text-red-300 border border-red-900/60 text-xs font-semibold flex items-center gap-1.5 transition">
+              <i data-lucide="eye" class="w-3.5 h-3.5 text-red-400"></i>
+              <span>Quick Preview</span>
+            </button>
+
+            <a href="https://github.com/deepak30ips-pixel/insurance-fraud-detection" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5">
+              <span>Source</span>
               <i data-lucide="github" class="w-3.5 h-3.5"></i>
             </a>
 
@@ -777,11 +782,16 @@
             </ul>
           </div>
 
-          <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-3">
-            <a href="https://midnight-grid.netlify.app" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
-              <span>Play Game Live</span>
+          <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2 sm:gap-3">
+            <a href="https://midnight-grid.netlify.app" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
+              <span>Play Live</span>
               <i data-lucide="play" class="w-3.5 h-3.5"></i>
             </a>
+
+            <button onclick="openLivePreviewModal('https://midnight-grid.netlify.app', 'Midnight Grid — Web Car Game')" class="px-3.5 py-2.5 rounded-xl bg-red-950/70 hover:bg-red-900/90 text-red-300 border border-red-900/60 text-xs font-semibold flex items-center gap-1.5 transition">
+              <i data-lucide="eye" class="w-3.5 h-3.5 text-red-400"></i>
+              <span>Quick Preview</span>
+            </button>
 
             <button onclick="openProjectModal('midnight-grid')" class="ml-auto text-xs text-slate-400 hover:text-purple-400 underline">Case Study</button>
           </div>
@@ -1304,6 +1314,39 @@
           <button onclick="closeResumeModal()" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white text-xs">Close</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- LIVE PROJECT PREVIEW MODAL (IFRAME) -->
+  <div id="live-preview-modal" class="fixed inset-0 bg-black/90 backdrop-blur-lg z-[999] hidden flex-col transition-all duration-300">
+    <!-- Modal Header -->
+    <div class="flex items-center justify-between px-6 py-4 bg-slate-950/90 border-b border-slate-800">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full bg-red-600 shadow-[0_0_8px_#dc2626]"></span>
+        <div>
+          <h3 id="preview-modal-title" class="text-sm font-bold text-white font-heading">Live Project Preview</h3>
+          <p id="preview-modal-url" class="text-[11px] font-mono text-slate-400">https://...</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a id="preview-external-link" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs font-semibold flex items-center gap-1.5 transition">
+          <span>Open Full Page</span>
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+        <button onclick="closeLivePreviewModal()" class="p-2 rounded-xl bg-slate-800 hover:bg-red-900/60 text-slate-400 hover:text-white transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Iframe Container -->
+    <div class="flex-1 w-full bg-[#080808] relative">
+      <div id="preview-loading" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#080808] text-slate-400 text-xs">
+        <div class="w-8 h-8 rounded-full border-2 border-red-600 border-t-transparent animate-spin"></div>
+        <span>Loading live preview application...</span>
+      </div>
+      <iframe id="preview-iframe" class="w-full h-full border-0 relative z-10" onload="document.getElementById('preview-loading').style.display='none'"></iframe>
     </div>
   </div>
 
