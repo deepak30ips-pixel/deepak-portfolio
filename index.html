@@ -467,6 +467,104 @@
           </div>
         </div>
       </div>
+
+      <!-- ANIMATED SKILL PROFICIENCY BARS -->
+      <div id="skills-proficiency" class="glass-panel spotlight-card rounded-3xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800/80 pb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-red-500/10 text-red-400 flex items-center justify-center border border-red-500/20">
+              <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white font-heading">Core Proficiency Metrics</h3>
+              <p class="text-xs text-slate-400">Hands-on confidence level & application mastery</p>
+            </div>
+          </div>
+          <span class="text-xs font-mono text-red-400/80 bg-red-950/40 border border-red-900/40 px-3 py-1 rounded-full w-fit">
+            // SCROLL TO ANIMATE
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
+          <!-- Skill Bar 1: Web Development -->
+          <div class="space-y-2 skill-progress-item">
+            <div class="flex justify-between items-center text-xs font-medium">
+              <span class="text-slate-200 font-semibold flex items-center gap-2">
+                <i data-lucide="globe" class="w-3.5 h-3.5 text-red-500"></i> HTML5, CSS3 & Modern Web Dev
+              </span>
+              <span class="font-mono text-red-400 font-bold skill-pct">90%</span>
+            </div>
+            <div class="h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-red-900 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)] transition-all duration-1000 ease-out" data-target="90" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Bar 2: JavaScript -->
+          <div class="space-y-2 skill-progress-item">
+            <div class="flex justify-between items-center text-xs font-medium">
+              <span class="text-slate-200 font-semibold flex items-center gap-2">
+                <i data-lucide="code-2" class="w-3.5 h-3.5 text-red-500"></i> JavaScript (ES6+ & DOM Logic)
+              </span>
+              <span class="font-mono text-red-400 font-bold skill-pct">85%</span>
+            </div>
+            <div class="h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-red-900 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)] transition-all duration-1000 ease-out" data-target="85" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Bar 3: Python -->
+          <div class="space-y-2 skill-progress-item">
+            <div class="flex justify-between items-center text-xs font-medium">
+              <span class="text-slate-200 font-semibold flex items-center gap-2">
+                <i data-lucide="terminal" class="w-3.5 h-3.5 text-red-500"></i> Python & ML Applications
+              </span>
+              <span class="font-mono text-red-400 font-bold skill-pct">80%</span>
+            </div>
+            <div class="h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-red-900 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)] transition-all duration-1000 ease-out" data-target="80" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Bar 4: Tailwind CSS -->
+          <div class="space-y-2 skill-progress-item">
+            <div class="flex justify-between items-center text-xs font-medium">
+              <span class="text-slate-200 font-semibold flex items-center gap-2">
+                <i data-lucide="palette" class="w-3.5 h-3.5 text-red-500"></i> Tailwind CSS & Responsive UI
+              </span>
+              <span class="font-mono text-red-400 font-bold skill-pct">90%</span>
+            </div>
+            <div class="h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-red-900 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)] transition-all duration-1000 ease-out" data-target="90" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Bar 5: C / C++ -->
+          <div class="space-y-2 skill-progress-item">
+            <div class="flex justify-between items-center text-xs font-medium">
+              <span class="text-slate-200 font-semibold flex items-center gap-2">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-red-500"></i> C / C++ Logic & Algorithms
+              </span>
+              <span class="font-mono text-red-400 font-bold skill-pct">75%</span>
+            </div>
+            <div class="h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-red-900 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)] transition-all duration-1000 ease-out" data-target="75" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Skill Bar 6: Developer Tools -->
+          <div class="space-y-2 skill-progress-item">
+            <div class="flex justify-between items-center text-xs font-medium">
+              <span class="text-slate-200 font-semibold flex items-center gap-2">
+                <i data-lucide="git-branch" class="w-3.5 h-3.5 text-red-500"></i> Git, GitHub & Streamlit
+              </span>
+              <span class="font-mono text-red-400 font-bold skill-pct">85%</span>
+            </div>
+            <div class="h-2.5 bg-slate-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+              <div class="skill-bar-fill h-full rounded-full bg-gradient-to-r from-red-900 via-red-600 to-red-500 shadow-[0_0_10px_rgba(220,38,38,0.5)] transition-all duration-1000 ease-out" data-target="85" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- INTERACTIVE DEVELOPER CLI TERMINAL -->

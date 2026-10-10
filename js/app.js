@@ -150,6 +150,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── 4.5. ANIMATED SKILL PROFICIENCY BARS ─────────────────────
+  (() => {
+    const skillProfContainer = document.getElementById('skills-proficiency');
+    if (!skillProfContainer) return;
+
+    let animated = false;
+    const animateBars = () => {
+      if (animated) return;
+      animated = true;
+      const fills = skillProfContainer.querySelectorAll('.skill-bar-fill');
+      fills.forEach(fill => {
+        const target = fill.getAttribute('data-target') || '80';
+        setTimeout(() => {
+          fill.style.width = target + '%';
+        }, 150);
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateBars();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+      observer.observe(skillProfContainer);
+    } else {
+      animateBars();
+    }
+  })();
+
   // Add hover sounds to interactive elements
   document.querySelectorAll('a, button, .glass-card-hover').forEach(el => {
     el.addEventListener('mouseenter', () => playSound('hover'));
