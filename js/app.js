@@ -43,9 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
       { at: 100, lineIdx: 3 },
     ];
 
-    // Snappy 650ms animation curve
+    // Smooth 1.5s animation curve
     const tick = setInterval(() => {
-      const step = progress < 70 ? (Math.random() * 8 + 6) : (Math.random() * 5 + 4);
+      const step = progress < 70 ? (Math.random() * 2.5 + 2.0) : (Math.random() * 2.0 + 1.2);
       progress = Math.min(100, progress + step);
 
       if (bar) bar.style.width = progress + '%';
@@ -65,15 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (progress >= 100) {
         clearInterval(tick);
         statusLines.forEach(l => { if (l) { l.classList.remove('active'); l.classList.add('done'); } });
-        setTimeout(dismissPreloader, 180);
+        setTimeout(dismissPreloader, 250);
       }
-    }, 25);
+    }, 30);
 
-    // Guaranteed safety fallback after 1.1s maximum
+    // Guaranteed safety fallback after 1.6s
     setTimeout(() => {
       clearInterval(tick);
       dismissPreloader();
-    }, 1100);
+    }, 1600);
   })();
 
   // ── 1. LUCIDE ICONS ──────────────────────────────────────────
