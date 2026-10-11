@@ -530,7 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const termCmds = {
     'help': `Available commands:\n  <span class="text-cyan-400 font-bold">skills</span>      - Show tech skills\n  <span class="text-cyan-400 font-bold">projects</span>    - List live projects\n  <span class="text-cyan-400 font-bold">about</span>       - Print bio &amp; education\n  <span class="text-cyan-400 font-bold">contact</span>     - Show contact details\n  <span class="text-cyan-400 font-bold">hire</span>        - Hiring info\n  <span class="text-cyan-400 font-bold">github</span>      - GitHub profile details\n  <span class="text-cyan-400 font-bold">clear</span>       - Clear terminal`,
     'skills': `<span class="text-purple-400 font-bold">Frontend:</span> HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Bootstrap\n<span class="text-cyan-400 font-bold">Programming:</span> Python, C, C++, SQL\n<span class="text-blue-400 font-bold">Backend &amp; DB:</span> SQLite, Firebase, Supabase, Node.js\n<span class="text-emerald-400 font-bold">Dev Tools:</span> Git, GitHub, Streamlit, VS Code, Figma`,
-    'projects': `🚀 <span class="text-white font-bold">1. Insurance Fraud Detection System</span>\n   Tech: Python, Scikit-learn, SQLite, Streamlit\n   Live: <a href="https://insurance-fraud-detection-system-esox.onrender.com/" target="_blank" class="text-cyan-400 underline">insurance-fraud-detection.onrender.com</a>\n\n🎮 <span class="text-white font-bold">2. Midnight Grid (Car Game)</span>\n   Tech: HTML5 Canvas, CSS3, Vanilla JavaScript\n   Live: <a href="https://midnight-grid.netlify.app" target="_blank" class="text-purple-400 underline">midnight-grid.netlify.app</a>`,
+    'projects': `🚀 <span class="text-white font-bold">1. Insurance Fraud Detection System</span>\n   Tech: Python, Scikit-learn, SQLite, Streamlit\n   Live: <a href="https://insurance-fraud-detection-system-esox.onrender.com/" target="_blank" class="text-cyan-400 underline">insurance-fraud-detection.onrender.com</a>\n\n🎮 <span class="text-white font-bold">2. Midnight Grid (Car Game)</span>\n   Tech: HTML5 Canvas, CSS3, Vanilla JavaScript\n   Live: <a href="https://midnight-grid.netlify.app" target="_blank" class="text-purple-400 underline">midnight-grid.netlify.app</a>\n\n💼 <span class="text-white font-bold">3. DevPulse (Workflow Suite)</span>\n   Tech: JavaScript (ES6+), Tailwind, REST, LocalStorage\n   GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-emerald-400 underline">github.com/deepak30ips-pixel</a>`,
     'about': `Deepak S | B.Tech Information Technology (2nd Year, Grad 2029)\nCollege: Velammal Engineering College, Tamil Nadu\nFocus: Web Development, Machine Learning, Interactive Web Applications.`,
     'contact': `📧 Email: <a href="mailto:deepakselladurai203@gmail.com" class="text-cyan-400 underline">deepakselladurai203@gmail.com</a>\n📱 Phone: <a href="tel:+919345674398" class="text-blue-400">+91 9345674398</a>\n🔗 LinkedIn: <a href="https://linkedin.com/in/deepak-selladurai-6905b3397" target="_blank" class="text-purple-400 underline">linkedin.com/in/deepak-selladurai</a>\n🐙 GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-emerald-400 underline">github.com/deepak30ips-pixel</a>`,
     'github': `GitHub: <span class="text-emerald-400 font-bold">@deepak30ips-pixel</span>\nRepos: Insurance Fraud Detection, Midnight Grid\nProfile: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-cyan-400 underline">https://github.com/deepak30ips-pixel</a>`,
@@ -630,6 +630,16 @@ document.addEventListener('DOMContentLoaded', () => {
       keyFeatures: ['Free Roam Mode: Open street driving','Bank Heist Mode: Tactical getaway','Responsive dark arcade interface','Optimized for desktop & touch'],
       liveUrl: 'https://midnight-grid.netlify.app',
       githubUrl: null
+    },
+    'devpulse': {
+      title: 'DevPulse — Developer Workflow Suite', badge: 'Full-Stack Web App',
+      tech: ['JavaScript (ES6+)','Tailwind CSS','REST APIs','LocalStorage','HTML5'],
+      description: 'A modular developer productivity suite designed to organize development tasks, track sprint velocity, and manage project workflows.',
+      problem: 'Developers often juggle multiple fragmented tools for basic sprint tracking and quick task categorization.',
+      solution: 'Engineered a lightweight, zero-latency dashboard with real-time state management, customizable priority queues, and offline-ready persistence.',
+      keyFeatures: ['Priority-based Kanban workflow boards','Instant search & tag-based filters','Local persistent storage sync','Keyboard shortcut navigation'],
+      liveUrl: null,
+      githubUrl: 'https://github.com/deepak30ips-pixel'
     }
   };
   const projModal = document.getElementById('project-modal');
