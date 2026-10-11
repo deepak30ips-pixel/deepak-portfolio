@@ -1231,36 +1231,46 @@
   </button>
 
   <!-- AI CHAT DRAWER / WINDOW -->
-  <div id="ai-chat-window" class="ai-chat-window closed fixed bottom-24 left-6 z-50 w-80 max-w-[calc(100vw-3rem)] rounded-2xl overflow-hidden transition-all duration-300" style="background: rgba(10,16,32,0.95); backdrop-filter: blur(20px);">
+  <div id="ai-chat-window" class="ai-chat-window closed fixed bottom-24 left-6 z-50 w-80 max-w-[calc(100vw-3rem)] rounded-2xl overflow-hidden transition-all duration-300" style="background: rgba(10,16,32,0.97); backdrop-filter: blur(24px);">
     <!-- Chat Header -->
-    <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800" style="background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(109,40,217,0.3));">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-slate-800/60" style="background: linear-gradient(135deg, rgba(185,28,28,0.25), rgba(109,40,217,0.18));">
       <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center text-white">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-red-700 to-red-500 flex items-center justify-center text-white shadow-lg shadow-red-900/40">
           <i data-lucide="bot" class="w-4 h-4"></i>
         </div>
         <div>
           <p class="text-xs font-bold text-white">Ask Deepak AI</p>
-          <p class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span> Online</p>
+          <p class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span> Online — always ready</p>
         </div>
       </div>
-      <button onclick="document.getElementById('ai-chat-window').classList.remove('open'); document.getElementById('ai-chat-window').classList.add('closed');" class="text-slate-400 hover:text-white p-1">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
+      <div class="flex items-center gap-1">
+        <!-- Clear chat -->
+        <button id="ai-chat-clear" title="Clear chat" class="text-slate-500 hover:text-slate-300 p-1 rounded-lg hover:bg-slate-800/60 transition">
+          <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+        </button>
+        <!-- Close -->
+        <button onclick="document.getElementById('ai-chat-window').classList.remove('open'); document.getElementById('ai-chat-window').classList.add('closed');" class="text-slate-500 hover:text-white p-1 rounded-lg hover:bg-slate-800/60 transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
     </div>
     <!-- Chat Messages -->
-    <div id="ai-chat-body" class="flex flex-col gap-2.5 p-4 overflow-y-auto" style="max-height: 300px; min-height: 200px;">
-      <div class="chat-msg-ai">👋 Hey! I'm Deepak's AI assistant. Ask me about his skills, projects, availability, or how to contact him!</div>
-    </div>
-    <!-- Suggested Prompts -->
-    <div class="px-3 pb-2 flex flex-wrap gap-1.5">
-      <button class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800/80 text-cyan-300 border border-slate-700 hover:border-cyan-500/50 transition" onclick="document.getElementById('ai-chat-input').value='What are his skills?'; document.getElementById('ai-chat-send').click()">Skills?</button>
-      <button class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800/80 text-purple-300 border border-slate-700 hover:border-purple-500/50 transition" onclick="document.getElementById('ai-chat-input').value='Tell me about his projects'; document.getElementById('ai-chat-send').click()">Projects?</button>
-      <button class="text-[10px] px-2.5 py-1 rounded-full bg-slate-800/80 text-emerald-300 border border-slate-700 hover:border-emerald-500/50 transition" onclick="document.getElementById('ai-chat-input').value='Is he available to hire?'; document.getElementById('ai-chat-send').click()">Hire?</button>
+    <div id="ai-chat-body" class="flex flex-col gap-1.5 p-3 overflow-y-auto" style="max-height: 320px; min-height: 180px;">
+      <div class="chat-msg-wrapper ai-side">
+        <div class="chat-msg-ai">👋 Hey! I'm <strong>Deepak's AI assistant</strong>. Ask me about his skills, projects, resume, or how to contact him!</div>
+        <span class="chat-timestamp">now</span>
+      </div>
+      <!-- Initial follow-up chips -->
+      <div class="chat-followup-chips">
+        <button class="chat-followup-chip" onclick="document.getElementById('ai-chat-input').value='What are his skills?'; document.getElementById('ai-chat-send').click()">Skills?</button>
+        <button class="chat-followup-chip" onclick="document.getElementById('ai-chat-input').value='Show me his projects'; document.getElementById('ai-chat-send').click()">Projects?</button>
+        <button class="chat-followup-chip" onclick="document.getElementById('ai-chat-input').value='Is he available to hire?'; document.getElementById('ai-chat-send').click()">Hire?</button>
+      </div>
     </div>
     <!-- Chat Input -->
-    <div class="flex items-center gap-2 px-3 pb-3">
-      <input id="ai-chat-input" type="text" placeholder="Ask anything about Deepak..." class="flex-1 px-3 py-2 rounded-xl text-xs bg-slate-800/80 border border-slate-700 focus:border-blue-500/60 focus:outline-none text-white placeholder-slate-500 transition">
-      <button id="ai-chat-send" class="p-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-500 hover:to-purple-500 transition">
+    <div class="flex items-center gap-2 px-3 pb-3 pt-1 border-t border-slate-800/40">
+      <input id="ai-chat-input" type="text" placeholder="Ask anything about Deepak..." autocomplete="off" class="flex-1 px-3 py-2 rounded-xl text-xs bg-slate-800/70 border border-slate-700/60 focus:border-red-600/60 focus:outline-none text-white placeholder-slate-500 transition">
+      <button id="ai-chat-send" title="Send" class="p-2 rounded-xl bg-gradient-to-r from-red-700 to-red-500 text-white hover:from-red-600 hover:to-red-400 transition shadow-lg shadow-red-900/30">
         <i data-lucide="send" class="w-3.5 h-3.5"></i>
       </button>
     </div>

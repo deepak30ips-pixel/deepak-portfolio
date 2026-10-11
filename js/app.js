@@ -749,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chatSend   = document.getElementById('ai-chat-send');
   let chatOpen = false;
 
+
   const toggleChat = (force) => {
     chatOpen = force !== undefined ? force : !chatOpen;
     if (chatWindow) {
@@ -761,56 +762,142 @@ document.addEventListener('DOMContentLoaded', () => {
   if (chatBtn) chatBtn.addEventListener('click', () => toggleChat());
 
   const aiKnowledge = {
-    name: 'Deepak S', degree: 'B.Tech Information Technology', college: 'Velammal Engineering College',
-    year: '2nd Year (Graduation 2029)', location: 'Tamil Nadu, India',
-    email: 'deepakselladurai203@gmail.com', phone: '+91 9345674398',
+    name: 'Deepak S',
+    degree: 'B.Tech Information Technology',
+    college: 'Velammal Engineering College',
+    year: '2nd Year (Graduation 2029)',
+    location: 'Tamil Nadu, India',
+    email: 'deepakselladurai203@gmail.com',
+    phone: '+91 9345674398',
     github: 'https://github.com/deepak30ips-pixel',
     linkedin: 'https://linkedin.com/in/deepak-selladurai-6905b3397',
+    resume: 'assets/Deepak_S_Resume.html',
     skills: ['HTML5','CSS3','JavaScript','React.js','Python','C','C++','SQL','SQLite','Firebase','Streamlit','Git','Figma','Tailwind CSS'],
-    projects: ['Insurance Fraud Detection System (Python/Streamlit/ML)','Midnight Grid (HTML5 Canvas Browser Car Game)'],
+    projects: [
+      { name: 'Insurance Fraud Detection', url: 'https://insurance-fraud-detection-system-esox.onrender.com/', desc: 'ML-powered fraud detection web app' },
+      { name: 'Midnight Grid', url: 'https://midnight-grid.netlify.app', desc: 'Dark-themed HTML5 browser car game' },
+      { name: 'DevPulse', url: '#projects', desc: 'Full-stack developer analytics dashboard' },
+    ],
     available: 'Available for freelance projects, internships, and collaborations',
-    certs: ['Python for Beginners - Simplilearn','Intro to Cyber Security - Simplilearn'],
+    certs: ['Python for Beginners — Simplilearn','Intro to Cyber Security — Simplilearn'],
+  };
+
+  // Suggested follow-up chips per topic
+  const followUpChips = {
+    skills:    ['View projects?', 'Contact him?', 'GitHub link?'],
+    projects:  ['Live links?', 'Hire him?', 'GitHub link?'],
+    contact:   ['LinkedIn?', 'GitHub link?', 'Is he available?'],
+    hire:      ['Contact him?', 'View projects?', 'View resume?'],
+    github:    ['LinkedIn?', 'View projects?', 'Contact him?'],
+    linkedin:  ['GitHub link?', 'Contact him?', 'Is he available?'],
+    education: ['What are his skills?', 'View projects?', 'Hire him?'],
+    resume:    ['View projects?', 'Contact him?', 'Is he available?'],
+    certs:     ['What are his skills?', 'View projects?', 'Contact him?'],
+    default:   ['Skills?', 'Projects?', 'Contact him?'],
   };
 
   const aiRespond = (q) => {
     const lq = q.toLowerCase();
-    if (lq.includes('name') || lq.includes('who'))
-      return `I'm Deepak S — a ${aiKnowledge.degree} student at ${aiKnowledge.college}, passionate about web development and ML! 👋`;
-    if (lq.includes('skill') || lq.includes('tech') || lq.includes('know'))
-      return `Deepak's core skills: <strong>${aiKnowledge.skills.join(', ')}</strong>. He specializes in building interactive web experiences and ML-powered apps.`;
-    if (lq.includes('project'))
-      return `Deepak has built:\n1. 🚀 <strong>Insurance Fraud Detection</strong> — ML-powered web app on Streamlit\n2. 🎮 <strong>Midnight Grid</strong> — Dark-themed HTML5 browser car game\nClick "View Projects" to explore them!`;
-    if (lq.includes('contact') || lq.includes('email') || lq.includes('reach'))
-      return `📧 <strong>${aiKnowledge.email}</strong>\n📱 ${aiKnowledge.phone}\nOr use the contact form below!`;
-    if (lq.includes('hire') || lq.includes('avail') || lq.includes('freelance') || lq.includes('intern'))
-      return `✅ ${aiKnowledge.available}! Send him a message via the contact section or email directly at ${aiKnowledge.email}`;
-    if (lq.includes('github'))
-      return `Deepak's GitHub: <a href="${aiKnowledge.github}" target="_blank" class="text-cyan-400 underline">${aiKnowledge.github}</a>`;
-    if (lq.includes('linkedin'))
-      return `LinkedIn: <a href="${aiKnowledge.linkedin}" target="_blank" class="text-cyan-400 underline">deepak-selladurai</a>`;
-    if (lq.includes('certif') || lq.includes('course'))
-      return `Deepak has completed:\n• ${aiKnowledge.certs.join('\n• ')}`;
-    if (lq.includes('education') || lq.includes('college') || lq.includes('study'))
-      return `Deepak is studying ${aiKnowledge.degree} at <strong>${aiKnowledge.college}</strong>, ${aiKnowledge.year}.`;
+
     if (lq.includes('hello') || lq.includes('hi') || lq.includes('hey'))
-      return `Hey there! 👋 I'm Deepak's AI assistant. Ask me anything about his skills, projects, or how to get in touch!`;
-    return `Great question! I'd recommend checking the sections above, or contact Deepak directly at <strong>${aiKnowledge.email}</strong> — he replies fast! 😊`;
+      return { text: `Hey there! 👋 I'm <strong>Deepak's AI assistant</strong>. Ask me anything about his skills, projects, resume, or how to get in touch!`, topic: 'default' };
+
+    if (lq.includes('name') || lq.includes('who') || lq.includes('about'))
+      return { text: `I'm <strong>Deepak S</strong> — a <em>${aiKnowledge.degree}</em> student at <strong>${aiKnowledge.college}</strong>, ${aiKnowledge.year}.<br>📍 Based in ${aiKnowledge.location} — passionate about web dev &amp; ML! 🚀`, topic: 'education' };
+
+    if (lq.includes('skill') || lq.includes('tech') || lq.includes('stack') || lq.includes('know'))
+      return { text: `🛠️ <strong>Deepak's Tech Stack:</strong><br><br>${aiKnowledge.skills.map(s => `<span class="chat-chip-skill">${s}</span>`).join(' ')}`, topic: 'skills' };
+
+    if (lq.includes('project') || lq.includes('work') || lq.includes('built') || lq.includes('live link')) {
+      const links = aiKnowledge.projects.map((p,i) =>
+        `${i+1}. <strong>${p.name}</strong> — ${p.desc}<br>&nbsp;&nbsp;&nbsp;<a href="${p.url}" target="_blank" rel="noopener" class="chat-link">🔗 View Live →</a>`
+      ).join('<br><br>');
+      return { text: `🚀 <strong>Deepak's Projects:</strong><br><br>${links}`, topic: 'projects' };
+    }
+
+    if (lq.includes('resume') || lq.includes('cv'))
+      return { text: `📄 <strong>Deepak's Resume:</strong><br><a href="${aiKnowledge.resume}" target="_blank" rel="noopener" class="chat-link">📥 View / Download Resume →</a>`, topic: 'resume' };
+
+    if (lq.includes('contact') || lq.includes('email') || lq.includes('reach') || lq.includes('message'))
+      return { text: `📬 <strong>Contact Deepak:</strong><br>📧 <a href="mailto:${aiKnowledge.email}" class="chat-link">${aiKnowledge.email}</a><br>📱 <a href="tel:${aiKnowledge.phone}" class="chat-link">${aiKnowledge.phone}</a><br><br>Or use the <strong>Contact form</strong> on this page! 👇`, topic: 'contact' };
+
+    if (lq.includes('hire') || lq.includes('avail') || lq.includes('freelance') || lq.includes('intern') || lq.includes('collab'))
+      return { text: `✅ <strong>${aiKnowledge.available}!</strong><br><br>💌 Reach him at <a href="mailto:${aiKnowledge.email}" class="chat-link">${aiKnowledge.email}</a> or use the contact form below.`, topic: 'hire' };
+
+    if (lq.includes('github') || lq.includes('code') || lq.includes('repo'))
+      return { text: `💻 <strong>GitHub Profile:</strong><br><a href="${aiKnowledge.github}" target="_blank" rel="noopener" class="chat-link">🔗 github.com/deepak30ips-pixel →</a>`, topic: 'github' };
+
+    if (lq.includes('linkedin'))
+      return { text: `🔗 <strong>LinkedIn Profile:</strong><br><a href="${aiKnowledge.linkedin}" target="_blank" rel="noopener" class="chat-link">🔗 Connect on LinkedIn →</a>`, topic: 'linkedin' };
+
+    if (lq.includes('certif') || lq.includes('course') || lq.includes('certificat'))
+      return { text: `🏆 <strong>Certifications:</strong><br>${aiKnowledge.certs.map(c => `• ${c}`).join('<br>')}`, topic: 'certs' };
+
+    if (lq.includes('education') || lq.includes('college') || lq.includes('study') || lq.includes('degree'))
+      return { text: `🎓 <strong>Education:</strong><br>${aiKnowledge.degree}<br><strong>${aiKnowledge.college}</strong><br>📅 ${aiKnowledge.year}`, topic: 'education' };
+
+    if (lq.includes('location') || lq.includes('where') || lq.includes('from'))
+      return { text: `📍 Deepak is based in <strong>${aiKnowledge.location}</strong> and works remotely with clients worldwide! 🌏`, topic: 'hire' };
+
+    if (lq.includes('thank') || lq.includes('bye') || lq.includes('goodbye'))
+      return { text: `You're welcome! 😊 Feel free to ask anything else. Happy to help! 🚀`, topic: 'default' };
+
+    return { text: `🤔 Great question! Explore the sections above or reach Deepak directly:<br><a href="mailto:${aiKnowledge.email}" class="chat-link">📧 ${aiKnowledge.email}</a> — he replies fast! ⚡`, topic: 'default' };
   };
 
-  const appendMsg = (html, type) => {
-    if (!chatBody) return;
-    const div = document.createElement('div');
-    div.className = type === 'user' ? 'chat-msg-user' : 'chat-msg-ai';
-    div.innerHTML = html.replace(/\n/g, '<br>');
-    chatBody.appendChild(div);
+  const renderFollowUpChips = (topic) => {
+    const chips = followUpChips[topic] || followUpChips.default;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-followup-chips';
+    chips.forEach(label => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-followup-chip';
+      btn.textContent = label;
+      btn.addEventListener('click', () => {
+        if (chatInput) chatInput.value = label;
+        sendChat();
+      });
+      wrapper.appendChild(btn);
+    });
+    chatBody.appendChild(wrapper);
     chatBody.scrollTop = chatBody.scrollHeight;
   };
 
+  const appendMsg = (content, type, topic) => {
+    if (!chatBody) return;
+    // Remove stale follow-up chips before next message
+    chatBody.querySelectorAll('.chat-followup-chips').forEach(el => el.remove());
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'chat-msg-wrapper ' + (type === 'user' ? 'user-side' : 'ai-side');
+
+    const bubble = document.createElement('div');
+    bubble.className = type === 'user' ? 'chat-msg-user' : 'chat-msg-ai';
+
+    if (type === 'user') {
+      bubble.textContent = content; // safe: textContent escapes user input
+    } else {
+      bubble.innerHTML = content.replace(/\n/g, '<br>');
+    }
+
+    const ts = document.createElement('span');
+    ts.className = 'chat-timestamp';
+    const now = new Date();
+    ts.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    wrapper.appendChild(bubble);
+    wrapper.appendChild(ts);
+    chatBody.appendChild(wrapper);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    if (type === 'ai' && topic) renderFollowUpChips(topic);
+  };
+
   const showTyping = () => {
-    hideTyping(); // Remove any existing indicator first to prevent duplicates
+    hideTyping();
     const div = document.createElement('div');
     div.id = 'typing-indicator';
-    div.className = 'chat-msg-ai flex items-center gap-1.5 py-3';
+    div.className = 'chat-msg-ai flex items-center gap-1.5 py-3 px-2';
     div.innerHTML = '<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>';
     chatBody?.appendChild(div);
     chatBody.scrollTop = chatBody.scrollHeight;
@@ -826,11 +913,22 @@ document.addEventListener('DOMContentLoaded', () => {
     showTyping();
     setTimeout(() => {
       hideTyping();
-      const reply = aiRespond(val);
-      appendMsg(reply, 'ai');
+      const result = aiRespond(val);
+      appendMsg(result.text, 'ai', result.topic);
       playSound('success');
-    }, 700 + Math.random() * 500);
+    }, 600 + Math.random() * 400);
   };
+
+  // Clear chat button
+  const clearChatBtn = document.getElementById('ai-chat-clear');
+  if (clearChatBtn) {
+    clearChatBtn.addEventListener('click', () => {
+      if (!chatBody) return;
+      chatBody.innerHTML = '';
+      appendMsg(`👋 Hey! I'm Deepak's AI assistant. Ask me about his skills, projects, availability, or how to contact him!`, 'ai', 'default');
+      playSound('click');
+    });
+  }
 
   chatSend?.addEventListener('click', sendChat);
   chatInput?.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendChat(); });

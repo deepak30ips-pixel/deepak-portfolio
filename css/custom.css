@@ -242,28 +242,90 @@ h1, h2, h3, h4, .font-heading {
   opacity: 0;
   pointer-events: none;
 }
+.chat-msg-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.chat-msg-wrapper.user-side {
+  align-items: flex-end;
+}
+.chat-msg-wrapper.ai-side {
+  align-items: flex-start;
+}
+.chat-timestamp {
+  font-size: 9px;
+  color: #64748b;
+  margin-top: 2px;
+  padding: 0 4px;
+}
 .chat-msg-user {
   background: linear-gradient(135deg, #7f1d1d, #dc2626);
-  border-radius: 18px 18px 4px 18px;
-  padding: 8px 14px;
+  border-radius: 16px 16px 4px 16px;
+  padding: 8px 12px;
   font-size: 12px;
   color: #fff;
-  max-width: 82%;
-  align-self: flex-end;
-  line-height: 1.5;
+  max-width: 85%;
+  line-height: 1.45;
   word-break: break-word;
 }
 .chat-msg-ai {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 18px 18px 18px 4px;
-  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 16px 16px 16px 4px;
+  padding: 8px 12px;
   font-size: 12px;
-  color: #d1d5db;
-  max-width: 88%;
-  align-self: flex-start;
-  line-height: 1.6;
+  color: #e2e8f0;
+  max-width: 90%;
+  line-height: 1.5;
   word-break: break-word;
+}
+.chat-link {
+  color: #f87171;
+  text-decoration: underline;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.15s ease;
+}
+.chat-link:hover {
+  color: #ef4444;
+  text-decoration: underline;
+}
+.chat-chip-skill {
+  display: inline-block;
+  padding: 2px 7px;
+  margin: 2px 2px 2px 0;
+  background: rgba(220, 38, 38, 0.15);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #fca5a5;
+}
+.chat-followup-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+.chat-followup-chip {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: #fca5a5;
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.chat-followup-chip:hover {
+  background: rgba(220, 38, 38, 0.25);
+  border-color: #ef4444;
+  color: #fff;
+  transform: translateY(-1px);
 }
 .typing-dot {
   animation: typingBounce 1.4s infinite ease-in-out both;
