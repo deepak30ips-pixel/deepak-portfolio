@@ -88,9 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileLinks.forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
   }
 
-  // ── 4. WEB AUDIO API — CYBERPUNK SFX ─────────────────────────
+  // ── 4. WEB AUDIO API — CYBERPUNK SFX (Muted by default for recruiter safety) ──
   let audioCtx = null;
-  let isMuted = localStorage.getItem('deepak-muted') === 'true';
+  // Strictly muted by default on first visit (only active if explicitly set to 'false' by user)
+  let isMuted = localStorage.getItem('deepak-muted') !== 'false';
   const audioVisualizerEl = document.getElementById('audio-visualizer');
   const muteBtn = document.getElementById('mute-btn');
   const muteBtnIcon = document.getElementById('mute-icon');
@@ -101,6 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (audioVisualizerEl) audioVisualizerEl.classList.toggle('muted', isMuted);
     if (muteBtnIcon) muteBtnIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
     if (mobileMuteIcon) mobileMuteIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
+
+    const labelText = isMuted ? 'Sound is Muted (Click to turn sound ON)' : 'Sound is ON (Click to Mute)';
+    if (muteBtn) {
+      muteBtn.setAttribute('title', labelText);
+      muteBtn.setAttribute('aria-label', labelText);
+      muteBtn.classList.toggle('text-red-400', !isMuted);
+      muteBtn.classList.toggle('border-red-500/40', !isMuted);
+      muteBtn.classList.toggle('text-slate-400', isMuted);
+    }
+    if (mobileMuteBtn) {
+      mobileMuteBtn.setAttribute('title', labelText);
+      mobileMuteBtn.setAttribute('aria-label', labelText);
+      mobileMuteBtn.classList.toggle('text-red-400', !isMuted);
+      mobileMuteBtn.classList.toggle('border-red-500/40', !isMuted);
+      mobileMuteBtn.classList.toggle('text-slate-400', isMuted);
+    }
+
     if (window.lucide) window.lucide.createIcons();
   };
   syncMuteUI();
