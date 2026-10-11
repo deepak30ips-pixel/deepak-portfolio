@@ -88,10 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const audioVisualizerEl = document.getElementById('audio-visualizer');
   const muteBtn = document.getElementById('mute-btn');
   const muteBtnIcon = document.getElementById('mute-icon');
+  const mobileMuteBtn = document.getElementById('mobile-mute-btn');
+  const mobileMuteIcon = document.getElementById('mobile-mute-icon');
 
   const syncMuteUI = () => {
     if (audioVisualizerEl) audioVisualizerEl.classList.toggle('muted', isMuted);
     if (muteBtnIcon) muteBtnIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
+    if (mobileMuteIcon) mobileMuteIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
     if (window.lucide) window.lucide.createIcons();
   };
   syncMuteUI();
@@ -151,14 +154,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.playSound = playSound;
 
-  if (muteBtn) {
-    muteBtn.addEventListener('click', () => {
-      isMuted = !isMuted;
-      localStorage.setItem('deepak-muted', isMuted);
-      syncMuteUI();
-      if (!isMuted) playSound('click');
-    });
-  }
+  const toggleMute = () => {
+    isMuted = !isMuted;
+    localStorage.setItem('deepak-muted', isMuted);
+    syncMuteUI();
+    if (!isMuted) playSound('click');
+  };
+
+  if (muteBtn) muteBtn.addEventListener('click', toggleMute);
+  if (mobileMuteBtn) mobileMuteBtn.addEventListener('click', toggleMute);
 
   // ── 4.5. ANIMATED SKILL PROFICIENCY BARS ─────────────────────
   (() => {
