@@ -517,6 +517,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'contact': `📧 Email: <a href="mailto:deepakselladurai203@gmail.com" class="text-cyan-400 underline">deepakselladurai203@gmail.com</a>\n📱 Phone: <a href="tel:+919345674398" class="text-blue-400">+91 9345674398</a>\n🔗 LinkedIn: <a href="https://linkedin.com/in/deepak-selladurai-6905b3397" target="_blank" class="text-purple-400 underline">linkedin.com/in/deepak-selladurai</a>\n🐙 GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-emerald-400 underline">github.com/deepak30ips-pixel</a>`,
     'github': `GitHub: <span class="text-emerald-400 font-bold">@deepak30ips-pixel</span>\nRepos: Insurance Fraud Detection, Midnight Grid\nProfile: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-cyan-400 underline">https://github.com/deepak30ips-pixel</a>`,
     'hire': `🎉 <span class="text-emerald-400 font-bold">Thank you for considering Deepak S!</span>\nStatus: <span class="text-cyan-400">Available for Freelance, Internships &amp; Collaborations</span>\nEmail: <span class="text-blue-400">deepakselladurai203@gmail.com</span>`,
+    'resume': `📄 <span class="text-white font-bold">Deepak S — Official Resume Document</span>\nView &amp; Print: <a href="assets/Deepak_S_Resume.html" target="_blank" class="text-cyan-400 underline font-bold">Open Resume Document ↗</a>`,
     'sudo hire deepak': `[PERMISSIONS GRANTED] ✨ Excellent choice!\nDeepak is excited to work with you.\nEmail: <span class="text-cyan-400">deepakselladurai203@gmail.com</span>`
   };
 
