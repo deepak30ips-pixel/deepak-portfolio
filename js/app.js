@@ -1,7 +1,7 @@
 // Advanced Interactive Logic for Deepak S Portfolio — Premium Edition
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── 0. CINEMATIC PRELOADER ────────────────────────────────────────
+  // ── 0. CINEMATIC PRELOADER (Optimized & Session-Aware) ───────────
   (() => {
     const preloader   = document.getElementById('preloader');
     const bar         = document.getElementById('preloader-bar');
@@ -12,32 +12,49 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('pst-3'),
       document.getElementById('pst-4'),
     ];
-    if (!preloader || !bar) return;
+    if (!preloader) return;
+
+    // Fast-path: If the user already visited in this session, remove preloader instantly
+    const hasLoadedThisSession = sessionStorage.getItem('deepak_portfolio_loaded');
+    if (hasLoadedThisSession) {
+      preloader.remove();
+      return;
+    }
 
     document.body.classList.add('preloader-active');
 
+    const dismissPreloader = () => {
+      sessionStorage.setItem('deepak_portfolio_loaded', 'true');
+      if (preloader && !preloader.classList.contains('preloader-hidden')) {
+        preloader.classList.add('preloader-hidden');
+        document.body.classList.remove('preloader-active');
+        setTimeout(() => { preloader.remove(); }, 600);
+      }
+    };
+
+    // Instant skip on click/tap for impatient recruiters
+    preloader.addEventListener('click', dismissPreloader);
+
     let progress = 0;
     const milestones = [
-      { at: 10,  lineIdx: 0 },
-      { at: 40,  lineIdx: 1 },
-      { at: 75,  lineIdx: 2 },
+      { at: 15,  lineIdx: 0 },
+      { at: 45,  lineIdx: 1 },
+      { at: 80,  lineIdx: 2 },
       { at: 100, lineIdx: 3 },
     ];
 
+    // Snappy 650ms animation curve
     const tick = setInterval(() => {
-      // Accelerate toward milestones, then slow slightly near 100
-      const step = progress < 80 ? (Math.random() * 3 + 1.5) : (Math.random() * 1.2 + 0.4);
+      const step = progress < 70 ? (Math.random() * 8 + 6) : (Math.random() * 5 + 4);
       progress = Math.min(100, progress + step);
 
       if (bar) bar.style.width = progress + '%';
       if (pct)  pct.textContent  = Math.floor(progress) + '%';
 
-      // Activate status lines at thresholds
       milestones.forEach(m => {
         const line = statusLines[m.lineIdx];
         if (!line) return;
         if (progress >= m.at && !line.classList.contains('active') && !line.classList.contains('done')) {
-          // Mark previous lines as done
           statusLines.slice(0, m.lineIdx).forEach(l => {
             if (l) { l.classList.remove('active'); l.classList.add('done'); }
           });
@@ -48,26 +65,15 @@ document.addEventListener('DOMContentLoaded', () => {
       if (progress >= 100) {
         clearInterval(tick);
         statusLines.forEach(l => { if (l) { l.classList.remove('active'); l.classList.add('done'); } });
-
-        setTimeout(() => {
-          if (preloader && !preloader.classList.contains('preloader-hidden')) {
-            preloader.classList.add('preloader-hidden');
-            document.body.classList.remove('preloader-active');
-            setTimeout(() => { preloader.remove(); }, 800);
-          }
-        }, 350);
+        setTimeout(dismissPreloader, 180);
       }
-    }, 35);
+    }, 25);
 
-    // Guaranteed Safety Fallback — Dismiss preloader after 2.5s maximum
+    // Guaranteed safety fallback after 1.1s maximum
     setTimeout(() => {
       clearInterval(tick);
-      if (preloader && !preloader.classList.contains('preloader-hidden')) {
-        preloader.classList.add('preloader-hidden');
-        document.body.classList.remove('preloader-active');
-        setTimeout(() => { preloader.remove(); }, 800);
-      }
-    }, 2500);
+      dismissPreloader();
+    }, 1100);
   })();
 
   // ── 1. LUCIDE ICONS ──────────────────────────────────────────
