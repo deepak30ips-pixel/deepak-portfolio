@@ -246,7 +246,7 @@
 
             <div id="hero-stats" class="grid grid-cols-3 gap-3 pt-6 border-t border-slate-800/80">
               <div class="p-3 rounded-2xl glass-panel-subtle text-center">
-                <div class="text-2xl sm:text-3xl font-bold text-white font-heading stat-counter" data-target="3" data-suffix="+">3+</div>
+                <div class="text-2xl sm:text-3xl font-bold text-white font-heading stat-counter" data-target="4" data-suffix="+">4+</div>
                 <div class="text-[11px] sm:text-xs text-slate-400 mt-0.5">Live Projects</div>
               </div>
               <div class="p-3 rounded-2xl glass-panel-subtle text-center">
@@ -662,10 +662,11 @@
 
       <!-- Filter Buttons -->
       <div class="flex flex-wrap items-center justify-center gap-2.5 pb-2">
-        <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-red-700 text-white border border-red-600 transition shadow-md">All Projects (3)</button>
+        <button data-filter="all" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-red-700 text-white border border-red-600 transition shadow-md">All Projects (4)</button>
+        <button data-filter="mobile" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-400 border border-slate-800 hover:border-slate-600 transition">Mobile &amp; Android</button>
         <button data-filter="ml" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-400 border border-slate-800 hover:border-slate-600 transition">Machine Learning</button>
-        <button data-filter="game" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-400 border border-slate-800 hover:border-slate-600 transition">Web Games</button>
         <button data-filter="web" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-400 border border-slate-800 hover:border-slate-600 transition">Web Apps</button>
+        <button data-filter="game" class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900/60 text-slate-400 border border-slate-800 hover:border-slate-600 transition">Web Games</button>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -757,12 +758,59 @@
           </div>
         </div>
 
-        <!-- Project 3: DevPulse Workspace -->
-        <div data-category="web" class="project-card tilt-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden md:col-span-2 lg:col-span-1">
+        <!-- Project 3: PocketTrack — Personal Finance & Android App -->
+        <div data-category="mobile web" class="project-card tilt-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
-              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Full-Stack Web App</span>
-              <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="layers" class="w-4 h-4 text-emerald-400"></i> Cloud & LocalStorage</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Full-Stack &amp; Android</span>
+              <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="smartphone" class="w-4 h-4 text-emerald-400"></i> Next.js + APK</span>
+            </div>
+
+            <h3 class="text-2xl font-bold text-white font-heading">PocketTrack — Personal Finance</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              A personal finance tracking application to record daily expenses, track budgets, analyze spending trends, scan receipts with OCR, and generate PDF reports across Web &amp; Android.
+            </p>
+
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 border border-slate-700">Next.js 16</span>
+              <span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 border border-slate-700">Capacitor 8 (Android)</span>
+              <span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 border border-slate-700">Supabase</span>
+              <span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 border border-slate-700">Tesseract OCR</span>
+            </div>
+
+            <ul class="text-xs text-slate-300 space-y-2 pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Daily expense tracking &amp; interactive analytics dashboard</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Tesseract.js OCR receipt scanning for effortless entry</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Native Android plugin saves PDF reports to device Downloads</li>
+            </ul>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2 sm:gap-3">
+            <a href="https://pocket-track-alpha.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
+              <span>View Web App</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+
+            <a href="assets/pockettrack.apk" download="PocketTrack.apk" class="px-3.5 py-2.5 rounded-xl bg-red-950/70 hover:bg-red-900/90 text-red-300 border border-red-900/60 text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
+              <i data-lucide="download" class="w-3.5 h-3.5 text-red-400"></i>
+              <span>Download APK</span>
+            </a>
+
+            <a href="https://github.com/deepak30ips-pixel/PocketTrack" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold flex items-center gap-1.5">
+              <span>Source</span>
+              <i data-lucide="github" class="w-3.5 h-3.5"></i>
+            </a>
+
+            <button onclick="openProjectModal('pockettrack')" class="ml-auto text-xs text-slate-400 hover:text-emerald-400 underline">Case Study</button>
+          </div>
+        </div>
+
+        <!-- Project 4: DevPulse Workspace -->
+        <div data-category="web" class="project-card tilt-card glass-panel spotlight-card glass-card-hover rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between relative overflow-hidden">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Full-Stack Web App</span>
+              <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i> Cloud & LocalStorage</span>
             </div>
 
             <h3 class="text-2xl font-bold text-white font-heading">DevPulse — Developer Workflow Suite</h3>
@@ -778,19 +826,19 @@
             </div>
 
             <ul class="text-xs text-slate-300 space-y-2 pt-2">
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Real-time priority tagging & workflow status boards</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Persistent client-side data storage & search filters</li>
-              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Fully responsive glassmorphic design system</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-cyan-400"></i> Real-time priority tagging & workflow status boards</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-cyan-400"></i> Persistent client-side data storage & search filters</li>
+              <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-cyan-400"></i> Fully responsive glassmorphic design system</li>
             </ul>
           </div>
 
           <div class="pt-4 border-t border-slate-800 flex flex-wrap items-center gap-2 sm:gap-3">
-            <a href="https://github.com/deepak30ips-pixel" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
+            <a href="https://github.com/deepak30ips-pixel" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-xs font-semibold flex items-center gap-1.5 shadow-md">
               <span>View Source</span>
               <i data-lucide="github" class="w-3.5 h-3.5"></i>
             </a>
 
-            <button onclick="openProjectModal('devpulse')" class="ml-auto text-xs text-slate-400 hover:text-emerald-400 underline">Case Study</button>
+            <button onclick="openProjectModal('devpulse')" class="ml-auto text-xs text-slate-400 hover:text-cyan-400 underline">Case Study</button>
           </div>
         </div>
       </div>
