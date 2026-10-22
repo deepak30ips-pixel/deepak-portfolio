@@ -649,6 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
       solution: 'Built a full-stack Next.js app with Supabase for real-time data sync, Tesseract.js for in-browser OCR receipt scanning, and Capacitor to compile a native Android APK — all from one codebase.',
       keyFeatures: ['Budget tracking with visual spending analytics','Receipt scanning via Tesseract.js OCR','PDF report download & export','Android APK via Capacitor','Real-time sync with Supabase'],
       liveUrl: 'https://pocket-track-alpha.vercel.app',
+      apkUrl: 'assets/pockettrack.apk',
       githubUrl: 'https://github.com/deepak30ips-pixel/PocketTrack'
     }
   };
@@ -672,6 +673,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="p-4 rounded-xl bg-slate-900/40 border border-slate-800/80"><h4 class="text-sm font-semibold text-slate-200 mb-2">Key Highlights</h4><ul class="text-xs text-slate-300 space-y-1.5">${d.keyFeatures.map(f=>`<li class="flex items-start gap-2"><span class="text-red-400">✓</span><span>${f}</span></li>`).join('')}</ul></div>
         <div class="flex items-center gap-3 pt-3 border-t border-slate-800">
           ${d.liveUrl ? `<a href="${d.liveUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-medium text-sm transition flex items-center gap-2"><span>Live Demo</span><i data-lucide="external-link" class="w-4 h-4"></i></a>` : ''}
+          ${d.apkUrl ? `<a href="${d.apkUrl}" download="PocketTrack.apk" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-medium text-sm transition flex items-center gap-2 shadow-md"><span>Download APK</span><i data-lucide="download" class="w-4 h-4"></i></a>` : ''}
           ${d.githubUrl ? `<a href="${d.githubUrl}" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 font-medium text-sm transition flex items-center gap-2"><span>Source Code</span><i data-lucide="github" class="w-4 h-4"></i></a>` : ''}
           <button onclick="closeProjectModal()" class="ml-auto px-4 py-2 rounded-xl text-slate-400 hover:text-white text-sm">Close</button>
         </div>
