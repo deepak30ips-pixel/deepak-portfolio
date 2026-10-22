@@ -530,10 +530,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const termCmds = {
     'help': `Available commands:\n  <span class="text-cyan-400 font-bold">skills</span>      - Show tech skills\n  <span class="text-cyan-400 font-bold">projects</span>    - List live projects\n  <span class="text-cyan-400 font-bold">about</span>       - Print bio &amp; education\n  <span class="text-cyan-400 font-bold">contact</span>     - Show contact details\n  <span class="text-cyan-400 font-bold">hire</span>        - Hiring info\n  <span class="text-cyan-400 font-bold">github</span>      - GitHub profile details\n  <span class="text-cyan-400 font-bold">clear</span>       - Clear terminal`,
     'skills': `<span class="text-purple-400 font-bold">Frontend:</span> HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Bootstrap\n<span class="text-cyan-400 font-bold">Programming:</span> Python, C, C++, SQL\n<span class="text-blue-400 font-bold">Backend &amp; DB:</span> SQLite, Firebase, Supabase, Node.js\n<span class="text-emerald-400 font-bold">Dev Tools:</span> Git, GitHub, Streamlit, VS Code, Figma`,
-    'projects': `🚀 <span class="text-white font-bold">1. Insurance Fraud Detection System</span>\n   Tech: Python, Scikit-learn, SQLite, Streamlit\n   Live: <a href="https://insurance-fraud-detection-system-esox.onrender.com/" target="_blank" class="text-cyan-400 underline">insurance-fraud-detection.onrender.com</a>\n\n📱 <span class="text-white font-bold">2. PocketTrack (Personal Finance &amp; Android App)</span>\n   Tech: Next.js 16, Capacitor 8, Supabase, Tesseract OCR\n   Web: <a href="https://pocket-track-alpha.vercel.app" target="_blank" class="text-emerald-400 underline">pocket-track-alpha.vercel.app</a>\n   APK: <a href="assets/pockettrack.apk" download class="text-red-400 underline font-bold">Download Android APK (15 MB)</a>\n\n🎮 <span class="text-white font-bold">3. Midnight Grid (Car Game)</span>\n   Tech: HTML5 Canvas, CSS3, Vanilla JavaScript\n   Live: <a href="https://midnight-grid.netlify.app" target="_blank" class="text-purple-400 underline">midnight-grid.netlify.app</a>\n\n💼 <span class="text-white font-bold">4. DevPulse (Workflow Suite)</span>\n   Tech: JavaScript (ES6+), Tailwind, REST, LocalStorage\n   GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-cyan-400 underline">github.com/deepak30ips-pixel</a>`,
+    'projects': `🚀 <span class="text-white font-bold">1. Insurance Fraud Detection System</span>\n   Tech: Python, Scikit-learn, SQLite, Streamlit\n   Live: <a href="https://insurance-fraud-detection-system-esox.onrender.com/" target="_blank" class="text-cyan-400 underline">insurance-fraud-detection.onrender.com</a>\n\n🎮 <span class="text-white font-bold">2. Midnight Grid (Car Game)</span>\n   Tech: HTML5 Canvas, CSS3, Vanilla JavaScript\n   Live: <a href="https://midnight-grid.netlify.app" target="_blank" class="text-purple-400 underline">midnight-grid.netlify.app</a>\n\n💼 <span class="text-white font-bold">3. DevPulse (Workflow Suite)</span>\n   Tech: JavaScript (ES6+), Tailwind, REST, LocalStorage\n   GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-emerald-400 underline">github.com/deepak30ips-pixel</a>\n\n💰 <span class="text-white font-bold">4. PocketTrack (Expense Tracker)</span>\n   Tech: Next.js, TypeScript, Supabase, Tailwind, Capacitor\n   Live: <a href="https://pocket-track-alpha.vercel.app" target="_blank" class="text-orange-400 underline">pocket-track-alpha.vercel.app</a>\n   GitHub: <a href="https://github.com/deepak30ips-pixel/PocketTrack" target="_blank" class="text-orange-400 underline">github.com/deepak30ips-pixel/PocketTrack</a>`,
     'about': `Deepak S | B.Tech Information Technology (2nd Year, Grad 2029)\nCollege: Velammal Engineering College, Tamil Nadu\nFocus: Web Development, Machine Learning, Interactive Web Applications.`,
     'contact': `📧 Email: <a href="mailto:deepakselladurai203@gmail.com" class="text-cyan-400 underline">deepakselladurai203@gmail.com</a>\n📱 Phone: <a href="tel:+919345674398" class="text-blue-400">+91 9345674398</a>\n🔗 LinkedIn: <a href="https://linkedin.com/in/deepak-selladurai-6905b3397" target="_blank" class="text-purple-400 underline">linkedin.com/in/deepak-selladurai</a>\n🐙 GitHub: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-emerald-400 underline">github.com/deepak30ips-pixel</a>`,
-    'github': `GitHub: <span class="text-emerald-400 font-bold">@deepak30ips-pixel</span>\nRepos: PocketTrack, Insurance Fraud Detection, Midnight Grid\nProfile: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-cyan-400 underline">https://github.com/deepak30ips-pixel</a>`,
+    'github': `GitHub: <span class="text-emerald-400 font-bold">@deepak30ips-pixel</span>\nRepos: Insurance Fraud Detection, Midnight Grid\nProfile: <a href="https://github.com/deepak30ips-pixel" target="_blank" class="text-cyan-400 underline">https://github.com/deepak30ips-pixel</a>`,
     'hire': `🎉 <span class="text-emerald-400 font-bold">Thank you for considering Deepak S!</span>\nStatus: <span class="text-cyan-400">Available for Freelance, Internships &amp; Collaborations</span>\nEmail: <span class="text-blue-400">deepakselladurai203@gmail.com</span>`,
     'resume': `📄 <span class="text-white font-bold">Deepak S — Official Resume Document</span>\nView &amp; Print: <a href="assets/Deepak_S_Resume.html" target="_blank" class="text-cyan-400 underline font-bold">Open Resume Document ↗</a>`,
     'sudo hire deepak': `[PERMISSIONS GRANTED] ✨ Excellent choice!\nDeepak is excited to work with you.\nEmail: <span class="text-cyan-400">deepakselladurai203@gmail.com</span>`
@@ -621,16 +621,6 @@ document.addEventListener('DOMContentLoaded', () => {
       liveUrl: 'https://insurance-fraud-detection-system-esox.onrender.com/',
       githubUrl: 'https://github.com/deepak30ips-pixel/insurance-fraud-detection'
     },
-    'pockettrack': {
-      title: 'PocketTrack — Personal Finance & Android App', badge: 'Full-Stack & Mobile App',
-      tech: ['Next.js 16','React','TypeScript','Tailwind CSS','Capacitor 8 (Android)','Supabase','Tesseract OCR','Java'],
-      description: 'A personal finance tracking application to record and manage daily expenses, monitor budgets, analyze spending habits, and generate PDF reports across Web & Android.',
-      problem: 'Tracking personal spending across disjointed mobile and web tools is friction-heavy, and manual receipt entry is time-consuming.',
-      solution: 'Engineered a unified Next.js + Supabase architecture bundled into a native Android app via Capacitor 8 with Tesseract.js OCR receipt recognition and a custom native Android plugin for device PDF downloads.',
-      keyFeatures: ['Expense & Budget Management: Daily transaction logging and category budgets','Analytics Dashboard: Spending distribution and financial summaries','Receipt Scanning: OCR extraction via Tesseract.js & WebAssembly','Native Android PDF Export: Custom plugin writes PDF reports directly to device Downloads folder','Direct Android APK download & live Vercel web deployment'],
-      liveUrl: 'https://pocket-track-alpha.vercel.app',
-      githubUrl: 'https://github.com/deepak30ips-pixel/PocketTrack'
-    },
     'midnight-grid': {
       title: 'Midnight Grid (Interactive Car Game)', badge: 'Web Game / Front-End',
       tech: ['HTML5','CSS3','JavaScript','Canvas API','Web Audio'],
@@ -650,6 +640,16 @@ document.addEventListener('DOMContentLoaded', () => {
       keyFeatures: ['Priority-based Kanban workflow boards','Instant search & tag-based filters','Local persistent storage sync','Keyboard shortcut navigation'],
       liveUrl: null,
       githubUrl: 'https://github.com/deepak30ips-pixel'
+    },
+    'pockettrack': {
+      title: 'PocketTrack — Personal Expense Tracker', badge: 'Full-Stack · Finance · Android',
+      tech: ['Next.js','React','TypeScript','Tailwind CSS','Supabase','Capacitor','Java','Tesseract.js'],
+      description: 'A cross-platform expense tracker that helps users manage budgets, analyze spending patterns, scan receipts via OCR, and export PDF reports — available on web and Android.',
+      problem: 'Managing personal finances across platforms is fragmented; most apps lack receipt scanning, PDF exports, or an Android companion app in one place.',
+      solution: 'Built a full-stack Next.js app with Supabase for real-time data sync, Tesseract.js for in-browser OCR receipt scanning, and Capacitor to compile a native Android APK — all from one codebase.',
+      keyFeatures: ['Budget tracking with visual spending analytics','Receipt scanning via Tesseract.js OCR','PDF report download & export','Android APK via Capacitor','Real-time sync with Supabase'],
+      liveUrl: 'https://pocket-track-alpha.vercel.app',
+      githubUrl: 'https://github.com/deepak30ips-pixel/PocketTrack'
     }
   };
   const projModal = document.getElementById('project-modal');
@@ -782,12 +782,12 @@ document.addEventListener('DOMContentLoaded', () => {
     github: 'https://github.com/deepak30ips-pixel',
     linkedin: 'https://linkedin.com/in/deepak-selladurai-6905b3397',
     resume: 'assets/Deepak_S_Resume.html',
-    skills: ['Next.js','React.js','TypeScript','HTML5','CSS3','JavaScript','Tailwind CSS','Capacitor','Supabase','Python','C','C++','SQL','SQLite','Firebase','Streamlit','Git','Figma'],
+    skills: ['HTML5','CSS3','JavaScript','React.js','Python','C','C++','SQL','SQLite','Firebase','Streamlit','Git','Figma','Tailwind CSS'],
     projects: [
-      { name: 'PocketTrack (Personal Finance & Android App)', url: 'https://pocket-track-alpha.vercel.app', apkUrl: 'assets/pockettrack.apk', desc: 'Full-stack personal finance tracker with Next.js 16, Supabase, OCR receipt scan & Android APK download' },
       { name: 'Insurance Fraud Detection', url: 'https://insurance-fraud-detection-system-esox.onrender.com/', desc: 'ML-powered fraud detection web app' },
       { name: 'Midnight Grid', url: 'https://midnight-grid.netlify.app', desc: 'Dark-themed HTML5 browser car game' },
       { name: 'DevPulse', url: '#projects', desc: 'Full-stack developer analytics dashboard' },
+      { name: 'PocketTrack', url: 'https://pocket-track-alpha.vercel.app', desc: 'Expense tracker — web & Android app with OCR & PDF export' },
     ],
     available: 'Available for freelance projects, internships, and collaborations',
     certs: ['Python for Beginners — Simplilearn','Intro to Cyber Security — Simplilearn'],
@@ -795,8 +795,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Suggested follow-up chips per topic
   const followUpChips = {
-    skills:    ['View projects?', 'Download APK?', 'GitHub link?'],
-    projects:  ['Download APK?', 'Hire him?', 'GitHub link?'],
+    skills:    ['View projects?', 'Contact him?', 'GitHub link?'],
+    projects:  ['Live links?', 'Hire him?', 'GitHub link?'],
     contact:   ['LinkedIn?', 'GitHub link?', 'Is he available?'],
     hire:      ['Contact him?', 'View projects?', 'View resume?'],
     github:    ['LinkedIn?', 'View projects?', 'Contact him?'],
@@ -804,31 +804,25 @@ document.addEventListener('DOMContentLoaded', () => {
     education: ['What are his skills?', 'View projects?', 'Hire him?'],
     resume:    ['View projects?', 'Contact him?', 'Is he available?'],
     certs:     ['What are his skills?', 'View projects?', 'Contact him?'],
-    default:   ['Skills?', 'Projects?', 'Download APK?'],
+    default:   ['Skills?', 'Projects?', 'Contact him?'],
   };
 
   const aiRespond = (q) => {
     const lq = q.toLowerCase();
 
     if (lq.includes('hello') || lq.includes('hi') || lq.includes('hey'))
-      return { text: `Hey there! 👋 I'm <strong>Deepak's AI assistant</strong>. Ask me anything about his skills, projects, Android app, resume, or how to get in touch!`, topic: 'default' };
+      return { text: `Hey there! 👋 I'm <strong>Deepak's AI assistant</strong>. Ask me anything about his skills, projects, resume, or how to get in touch!`, topic: 'default' };
 
     if (lq.includes('name') || lq.includes('who') || lq.includes('about'))
-      return { text: `I'm <strong>Deepak S</strong> — a <em>${aiKnowledge.degree}</em> student at <strong>${aiKnowledge.college}</strong>, ${aiKnowledge.year}.<br>📍 Based in ${aiKnowledge.location} — passionate about web dev, Android &amp; ML! 🚀`, topic: 'education' };
+      return { text: `I'm <strong>Deepak S</strong> — a <em>${aiKnowledge.degree}</em> student at <strong>${aiKnowledge.college}</strong>, ${aiKnowledge.year}.<br>📍 Based in ${aiKnowledge.location} — passionate about web dev &amp; ML! 🚀`, topic: 'education' };
 
     if (lq.includes('skill') || lq.includes('tech') || lq.includes('stack') || lq.includes('know'))
       return { text: `🛠️ <strong>Deepak's Tech Stack:</strong><br><br>${aiKnowledge.skills.map(s => `<span class="chat-chip-skill">${s}</span>`).join(' ')}`, topic: 'skills' };
 
-    if (lq.includes('apk') || lq.includes('android') || lq.includes('app') || lq.includes('pockettrack') || lq.includes('finance')) {
-      return { text: `📱 <strong>PocketTrack — Android App &amp; Web:</strong><br>Personal expense tracking app with Tesseract OCR receipt scanning &amp; PDF reports!<br><br>🌐 <a href="https://pocket-track-alpha.vercel.app" target="_blank" rel="noopener" class="chat-link">🔗 Open Web App →</a><br>📥 <a href="assets/pockettrack.apk" download="PocketTrack.apk" class="chat-link">📲 Download Android APK (15 MB) →</a><br>🐙 <a href="https://github.com/deepak30ips-pixel/PocketTrack" target="_blank" rel="noopener" class="chat-link">💻 GitHub Repo →</a>`, topic: 'projects' };
-    }
-
     if (lq.includes('project') || lq.includes('work') || lq.includes('built') || lq.includes('live link')) {
-      const links = aiKnowledge.projects.map((p,i) => {
-        let extra = '';
-        if (p.apkUrl) extra = ` | <a href="${p.apkUrl}" download class="chat-link">📲 Download APK</a>`;
-        return `${i+1}. <strong>${p.name}</strong> — ${p.desc}<br>&nbsp;&nbsp;&nbsp;<a href="${p.url}" target="_blank" rel="noopener" class="chat-link">🔗 View Live →</a>${extra}`;
-      }).join('<br><br>');
+      const links = aiKnowledge.projects.map((p,i) =>
+        `${i+1}. <strong>${p.name}</strong> — ${p.desc}<br>&nbsp;&nbsp;&nbsp;<a href="${p.url}" target="_blank" rel="noopener" class="chat-link">🔗 View Live →</a>`
+      ).join('<br><br>');
       return { text: `🚀 <strong>Deepak's Projects:</strong><br><br>${links}`, topic: 'projects' };
     }
 
